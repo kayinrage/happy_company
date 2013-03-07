@@ -28,7 +28,7 @@ Administrator can create regular group or parent group. User can be only assigne
 
 Legend: PG (name) - parent group; G (name) - regular group; name - user
 
--PG(Rooms)
+- PG(Rooms)
     - G (200)
         - Irek
         - Tomek
@@ -42,8 +42,7 @@ Legend: PG (name) - parent group; G (name) - regular group; name - user
     - G (203)
         - Darek
         - Grzegorz
-
--PG (Positions)
+- PG (Positions)
     - G (Developers)
         - Irek
         - Tomek
@@ -56,7 +55,6 @@ Legend: PG (name) - parent group; G (name) - regular group; name - user
     - G (Marketing)
         - Darek
         - Grzegorz
-
 - PG (Teams)
     - G (Mariachi)
         - Irek
@@ -77,8 +75,6 @@ Can be displayed for a specific period of time (last week, last month) or custom
 ### Dependencies
 
 As usual you can find all dependencies in Gemfile but the most important gems are: ActiveAdmin, Haml and Devise and Postgresql (of course database engine can be changed for whatever you want).
-
----
 
 ### Credits
 
