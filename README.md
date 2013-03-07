@@ -4,8 +4,6 @@
 
 Happy Company is a really simple Ruby on Rails application that will help you to measure happiness in your company.
 
----
-
 ## Roles
 
 ### Regular user
@@ -26,52 +24,49 @@ There is only one question "Are you happy today?" with four possible answers:
 
 ## Groups
 
-Administrator can create regular group or parent group. User can be only assigned to regular group. Parent groups are used only for statistics purposes. For example you can create a structure like this:
+Administrator can create regular group or parent group. User can be only assigned to regular group. Parent groups are used for statistics purposes. For example you can create a structure like this:
 
-PG(name) - parent group
-G(name) - regular group
-name - user
+Legend: PG (name) - parent group; G (name) - regular group; name - user
 
-PG(Rooms)
-- G(200)
-    - Irek
-    - Tomek
-    - Arek
-- G(201)
-    - Bartek
-    - Rafał
-- G(202)
-    - Błażej
-    - Szymon
-- G(203)
-    - Darek
-    - Grzegorz
+-PG(Rooms)
+    - G (200)
+        - Irek
+        - Tomek
+        - Arek
+    - G (201)
+        - Bartek
+        - Rafał
+    - G (202)
+        - Błażej
+        - Szymon
+    - G (203)
+        - Darek
+        - Grzegorz
 
-PG(Positions)
-- G(Developers)
-    - Irek
-    - Tomek
-    - Błażej
-    - Bartek
-    - Szymon
-- G(Designers)
-    - Arek
-    - Rafał
-- G(Marketing)
-    - Darek
-    - Grzegorz
+-PG (Positions)
+    - G (Developers)
+        - Irek
+        - Tomek
+        - Błażej
+        - Bartek
+        - Szymon
+    - G (Designers)
+        - Arek
+        - Rafał
+    - G (Marketing)
+        - Darek
+        - Grzegorz
 
-PG(Teams)
-- G(Mariachi)
-    - Irek
-    - Tomek
-    - Arek
-- G(Lumberjacks)
-    - Bartek
-    - Rafał
-    - Błażej
-    - Szymon
-
+- PG (Teams)
+    - G (Mariachi)
+        - Irek
+        - Tomek
+        - Arek
+    - G (Lumberjacks)
+        - Bartek
+        - Rafał
+        - Błażej
+        - Szymon
 
 ## Statistics
 
@@ -79,9 +74,9 @@ Can be displayed for a specific period of time (last week, last month) or custom
 
 ---
 
-## Dependencies
+### Dependencies
 
-As usual you can find all dependencies in Gemfile but the most important gems are: ActiveAdmin, Haml and Devise and Post (of course database engine can be changed for whatever you want).
+As usual you can find all dependencies in Gemfile but the most important gems are: ActiveAdmin, Haml and Devise and Postgresql (of course database engine can be changed for whatever you want).
 
 ---
 
