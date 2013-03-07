@@ -22,6 +22,10 @@ There is only one question "Are you happy today?" with four possible answers:
 - No, it was an average day for me :/ (score 1)
 - No, this day was a big disappointment :( (score 0)
 
+## Statistics
+
+Can be displayed for a specific period of time (last week, last month) or custom range. Admin can choose if he/she want to display only a specific person, whole group or few groups that are nested within parent group.
+
 ## Groups
 
 Administrator can create regular group or parent group. User can be only assigned to regular group. Parent groups are used for statistics purposes. For example you can create a structure like this:
@@ -66,15 +70,11 @@ Legend: PG (name) - parent group; G (name) - regular group; name - user
         - Błażej
         - Szymon
 
-## Statistics
-
-Can be displayed for a specific period of time (last week, last month) or custom range. Admin can choose if he/she want to display only a specific person, whole group or few groups that are nested within parent group.
-
 ---
 
 ### Dependencies
 
-As usual you can find all dependencies in Gemfile but the most important gems are: ActiveAdmin, Haml and Devise and Postgresql (of course database engine can be changed for whatever you want).
+You can find all dependencies in Gemfile but the most important gems are: ActiveAdmin, Haml and Devise and Postgresql (of course database engine can be changed for whatever you want).
 
 ### Credits
 
@@ -84,7 +84,8 @@ Supported by Selleo web &amp; mobile software development house - [http://selleo
 
 The MIT license
 
-Copyright &copy; 2013 [Ireneusz Skrobiś](https://twitter.com/ireneuszskrobis)
+Copyright &copy; 2013 [Ireneusz Skrobiś](http://selleo.com/people/ireneusz-skrobis)
+Find me on [LinkedIn](http://www.linkedin.com/in/ireneuszskrobis), [StackOverflow](http://stackoverflow.com/users/426085/ireneusz-skrobis) or follow me on [Twitter](https://twitter.com/ireneuszskrobis)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
