@@ -33,7 +33,7 @@ PG (name) - parent group<br/>
 G (name) - regular group<br/>
 name - user
 
-- PG(Rooms)
+- PG (Rooms)
     - G (200)
         - Irek
         - Tomek
@@ -80,7 +80,7 @@ You can find all dependencies in Gemfile but the most important gems are: Active
 ### Credits
 
 Supported by [Selleo](http://selleo.com) - web &amp; mobile software development house<br/>
-Styling by [Arkadiusz Janik](http://arekjanik.pl/)
+Styled by [Arkadiusz Janik](http://arekjanik.pl/)
 
 ### License
 

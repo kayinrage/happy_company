@@ -9,7 +9,7 @@ HappyCompany::Application.routes.draw do
 
   namespace :user do
     root to: "home#index"
-    resource :answers, only: [:index, :create, :update]
+    resources :answers, only: [:index, :create, :update]
     resource :profile, only: [:edit, :update], controller: "profile"
   end
 
