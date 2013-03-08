@@ -5,6 +5,6 @@ class CreateAnswers < ActiveRecord::Migration
       t.integer :result
       t.date :date
     end
-    add_index :companies, :business_id
+    add_index :answers, :user_id
   end
 end

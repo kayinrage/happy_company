@@ -1,9 +1,8 @@
-class CreateGroup < ActiveRecord::Migration
+class CreateGroups < ActiveRecord::Migration
   def change
     create_table(:groups) do |t|
-      t.integer :parent_group_id
       t.string :name
-      t.date :date
+      t.integer :parent_group_id
     end
     add_index :groups, :parent_group_id
   end

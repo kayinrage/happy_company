@@ -1,4 +1,7 @@
-ActiveAdmin.register AdminUser do     
+ActiveAdmin.register AdminUser do
+  menu :priority => 1
+  config.batch_actions = false
+
   index do                            
     column :email                     
     column :current_sign_in_at        
@@ -16,5 +19,6 @@ ActiveAdmin.register AdminUser do
       f.input :password_confirmation  
     end                               
     f.actions                         
-  end                                 
+  end
+
 end                                   
