@@ -12,4 +12,8 @@ class ParentGroup < ActiveRecord::Base
     all.map{|pg| [pg.name, pg.id]}
   end
 
+  def to_s
+    name
+  end
+
 end

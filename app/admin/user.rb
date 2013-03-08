@@ -24,6 +24,12 @@ ActiveAdmin.register User do
       f.input :email
       f.input :first_name
       f.input :last_name
+      if f.object.new_record?
+        f.input :password
+        f.input :password_confirmation
+      else
+        f.input :groups, :as => :check_boxes, :collection => Group.order(:name)
+      end
     end
     f.actions
   end

@@ -16,7 +16,12 @@ ActiveAdmin.register Group do
   form do |f|
     f.inputs "Parent Group Details" do
       f.input :name
-      f.input :parent_group_id, as: :select, collection: ParentGroup.for_select, include_blank: false
+      if f.object.new_record?
+        f.input :parent_group_id, as: :select, collection: ParentGroup.for_select, include_blank: false
+      else
+        f.input :parent_group_id, as: :select, collection: ParentGroup.for_select, include_blank: false
+        f.input :users, :as => :check_boxes, :collection => User.order(:email)
+      end
     end
     f.actions
   end

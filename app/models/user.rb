@@ -3,9 +3,14 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, as: :user
+  attr_accessible :email, :first_name, :last_name, :group_ids, :password, :password_confirmation, as: :admin
 
   has_many :answers
   has_many :memberships
   has_many :groups, through: :memberships
+
+  def to_s
+    email
+  end
 
 end

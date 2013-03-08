@@ -150,3 +150,9 @@ ActiveAdmin.setup do |config|
   # Set the CSV builder options (default is {})
   # config.csv_options = {}
 end
+
+module ActiveAdmin
+  class BaseController
+    with_role :admin
+  end
+end
