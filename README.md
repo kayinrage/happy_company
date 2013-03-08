@@ -1,8 +1,6 @@
 # Happy Company
 
----
-
-Happy Company is a really simple Ruby on Rails application that will help you to measure happiness in your company.
+Happy Company is a really simple Ruby on Rails application that will help you to measure happiness in your work environment.
 
 ## Roles
 
@@ -12,7 +10,7 @@ Can register, log in, edit profile and answer a question about how he/she feels 
 
 ### Administrator
 
-Admin can mange users and groups. He can also generate statistics for groups, parent groups and users
+Admin can mange users and groups. He can also generate statistics for groups, parent groups and users.
 
 ## Answers
 
@@ -30,7 +28,7 @@ Can be displayed for a specific period of time (last week, last month) or custom
 
 Administrator can create regular group or parent group. User can be only assigned to regular group. Parent groups are used for statistics purposes. For example you can create a structure like this:
 
-Legend: PG (name) - parent group; G (name) - regular group; name - user
+Legend:  PG (name) - parent group  G (name) - regular group  name - user
 
 - PG(Rooms)
     - G (200)
@@ -78,14 +76,13 @@ You can find all dependencies in Gemfile but the most important gems are: Active
 
 ### Credits
 
-Supported by Selleo web &amp; mobile software development house - [http://selleo.com](http://selleo.com)
+Supported by [Selleo](http://selleo.com) - web &amp; mobile software development house  Styling by [Arkadiusz Janik](http://arekjanik.pl/)
 
 ### License
 
 The MIT license
 
-Copyright &copy; 2013 [Ireneusz Skrobiś](http://selleo.com/people/ireneusz-skrobis)
-Find me on [LinkedIn](http://www.linkedin.com/in/ireneuszskrobis), [StackOverflow](http://stackoverflow.com/users/426085/ireneusz-skrobis) or follow me on [Twitter](https://twitter.com/ireneuszskrobis)
+Copyright &copy; 2013 [Ireneusz Skrobiś](http://selleo.com/people/ireneusz-skrobis)  Find me on [LinkedIn](http://www.linkedin.com/in/ireneuszskrobis), [StackOverflow](http://stackoverflow.com/users/426085/ireneusz-skrobis) or follow me on [Twitter](https://twitter.com/ireneuszskrobis)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
