@@ -1,4 +1,4 @@
-%h1 Are you happy today?
+%h2 Are you happy today?
 
 - unless @answer.new_record?
   You already answered today but you can change your answer if you want.
@@ -6,3 +6,27 @@
 = semantic_form_for([:user, @answer], url: @answer.new_record? ? user_answers_path : user_answers_path(@answer)) do |f|
   = f.input :result, :as => :radio, :collection => [["Yes, I'm very happy about this day :D", 3], ["Yes, this day was nice :)", 2], ["No, it was an average day for me :/", 1], ["No, this day was a big disappointment :(", 0]]
   = f.button "Save", id: "save_answer_button"
+
+  .voting
+    .happy.selected
+      .icon
+        %p
+          Yes, I'm very happy about this day
+    .nice
+      .icon
+        %p
+          Yes, this day was nice
+    .average
+      .icon
+        %p
+          No, it was an average day for me
+    .disappointing
+      .icon
+        %p
+          No, this day was a big disappointment
+
+%script
+  $('.voting div').height($('.voting div').width());
+  $(window).resize(function() {
+  $('.voting div').height($('.voting div').width());
+  });

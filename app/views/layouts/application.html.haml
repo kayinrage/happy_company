@@ -8,16 +8,50 @@
 = csrf_meta_tags
 %body
 
-#main_menu
+  %header
+    .va.clearfix
+      %h1.logo
+        happycompany
+      - if current_user
+        .user
+          You are logged in as:
+          = current_user.email
+
   - unless current_user
-    = link_to "Log in", new_user_session_path, :id => "menu_login_link"
-    = link_to "Register", new_user_registration_path, :id => "menu_register_link"
+    %nav.primary.login
+      %ul
+        %li
+          = link_to new_user_session_path, :id => "menu_login_link" do
+            %p
+              Log in
+        %li
+          = link_to new_user_registration_path, :id => "menu_register_link" do
+            %p
+              Register
   - else
-    You are logged in as:
-    = current_user.email
-    = link_to "Home", user_root_path, :id => "menu_answers_link"
-    = link_to "Answers", user_answers_path, :id => "menu_answers_link"
-    = link_to "Profile", edit_user_profile_path, :id => "menu_profile_link"
-    = link_to "Log out", destroy_user_session_path, :method => :delete, :id => "menu_logout_link"
-#content
-  = yield
+    %nav.primary
+      %ul
+        %li
+          = link_to user_root_path, :id => "menu_home_link" do
+            %p
+              Home
+        %li
+          = link_to user_answers_path, :id => "menu_answers_link" do
+            %p
+              Answers
+        %li
+          = link_to edit_user_profile_path, :id => "menu_profile_link" do
+            %p
+              Profile
+        %li
+          = link_to destroy_user_session_path, :method => :delete, :id => "menu_logout_link" do
+            %p
+              Log out
+
+  %section.content
+    = yield
+
+  %footer
+    Developed by Irek Skrobiś and styled by Arek Janik
+
+  %script{src: "menu.js"}
