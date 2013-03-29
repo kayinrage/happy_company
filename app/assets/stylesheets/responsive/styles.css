@@ -1,0 +1,344 @@
+/*
+we kick things off, mobile first, with the most basic styles for smaller viewports
+IE6-8 will be delivered this setup too - they'll ignore the media queries, so you could perhaps add a max-width to the .wrapper just for IE6-8 (the classes are already hooked up to the html element)
+*/
+
+
+/*some base rules - box-sizing, because it's awesome, and fluid images*/
+* { 
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box; 
+	}
+
+img {
+	max-width: 100%;
+}
+
+/*main structure*/
+html {
+	font-size: 100%;
+	background: #f2594b;
+}
+
+body {
+	font: 0.875em/1.5em Arial, sans-serif; /*base font-size of 14px (14/16 - lineheight based on 21px 1.5x14)*/
+	color: #201e1e;
+}
+
+a {
+	color: #fff;	
+}
+
+a:hover {
+	text-decoration: none;	
+}
+
+p {
+	margin: 0 0 1.5em 0;
+}
+
+ol, ul {
+	padding: 0;
+}
+
+h1, h2, h3 {
+	margin: 0 0 1.3em 0;
+}
+
+h2 {
+	font-size: 1.7em;
+}
+
+h1.logo {
+	margin: 0;
+}
+
+h1.logo a {
+	text-decoration: none;
+}
+
+/*we need to hide the main nav too, because the select is currently in use*/
+nav.primary ul {
+	display: none;		
+}
+
+nav.primary select {
+	width: 100%;
+	height: 1.5em;
+}
+
+/*let's structure and color-code our main elements, so we can see what's going on*/
+
+.wrapper {
+	width: 100%;
+	max-width: 2000px;	/*well, we don't want to get stupid now, eh?*/
+	margin: 0 auto;
+}
+
+header,
+nav.primary,
+section.content,
+aside,
+footer {
+	float: left;
+	width: 100%;
+	padding: 1.5em 4%;
+
+	/*just to pretty things up while we're demoing*/
+	-webkit-transition: all 0.4s ease-out;
+	-moz-transition: all 0.4s ease-out;
+	-o-transition: all 0.4s ease-out;
+	-ms-transition: all 0.4s ease-out;
+	transition: all 0.4s ease-out;
+}
+
+header {
+	background: #63a69f;
+    height: 10%;
+    padding: 0 3% !important;
+}
+
+nav.primary {
+	background: #f2e1ac;
+}
+
+section.content {
+	background: #f2836b;
+}
+
+aside {
+	background: #f2594b;
+}
+
+footer {
+	background: #cd2c24;
+}
+
+/*articles*/
+article {
+	padding: 0 0 1.5em;
+	margin: 0 0 2.5em;
+	border-bottom: 1px solid #e57057;
+}
+
+/*footer navs*/
+footer nav {
+	width: 100%;
+}
+
+footer nav ul li a {
+	display: block;
+	text-decoration: none;
+	border-bottom: 1px solid #f2594b;
+}
+
+footer nav ul li:last-child a {
+	border: none;
+}
+
+footer nav ul li a:hover {
+	background: #f2594b;
+	padding: 0 1em;
+}
+
+
+
+
+	/* -------------- media queries*/
+	
+	/* Up to Mobile Landscape Size */
+	@media only screen and (max-width: 479px) {}
+
+	/* Upwards of Mobile Landscape Size  */
+	@media only screen and (min-width: 480px) {
+		
+		nav.primary select {
+			display: none;
+		}
+		
+		nav.primary ul {
+			display: block;		
+		}
+		
+		nav.primary ul,
+		nav.primary ul li {
+			margin: 0px;
+		}
+		
+		nav.primary ul li {
+			display: inline;
+			float: left;
+            margin-left: 4%;
+            max-height: 50px;
+			position: relative;
+            width: 22%;
+		}
+
+        nav.primary.login ul li {
+            width: 48%;
+        }
+
+        nav.primary ul li a p {
+            margin: -4% 0 0 !important;
+        }
+
+        nav.primary ul li:first-child {
+            margin-left: 0;
+        }
+		
+		nav.primary ul li a {
+			display: inline-block;
+			color: #fff;
+			padding: 1em;
+			text-decoration: none;
+			font-weight: bold;
+            width: 100%;
+		}
+		
+		nav.primary ul li a:hover {
+			background: #424242;
+			cursor: pointer;
+		}
+		
+		nav.primary ul li span {
+			display: none;
+		}
+
+        .voting > div {
+            width: 50%;
+        }
+
+    }
+	/* Beyond All Mobile Sizes, Tablet Portrait etc. */
+	@media only screen and (min-width: 768px) {
+
+		/*structure*/
+		
+		header,
+		nav.primary,
+		section.content,
+		aside,
+		footer {
+			padding: 1.5em 3%;
+		}
+
+        header .logo {
+            width: 97%;
+        }
+
+        header .user {
+            text-align: left;
+            width: 97%;
+        }
+
+        section.content {
+            width: 100%;
+        }
+
+        footer nav {
+            width: 25%;
+        }
+
+        .voting > div {
+            width: 25%;
+        }
+		
+	}
+		
+	/* Beyond standard 960 */
+	@media only screen and (min-width: 960px) {
+		
+
+		/*structure*/
+
+		header,
+		nav.primary,
+		section.content,
+		aside,
+		footer {
+			padding: 1.5em 2%;
+		}
+
+        header .logo {
+            float: left;
+            width: 47%;
+        }
+
+        header .user {
+            float: right;
+            text-align: right;
+            width: 47%;
+        }
+
+        nav.primary.login ul li {
+            width: 100%;
+        }
+
+        section.content {
+            width: 100%;
+        }
+
+        footer {
+            width: 100%;
+        }
+
+        footer nav {
+            width: 100%;
+        }
+
+		footer nav ul li a {
+			display: block;
+		}
+		
+	}
+	
+	/* now we're getting really big.. */
+	@media only screen and (min-width: 1220px) {
+				
+		body {
+			font: 1em/1.5em Arial, sans-serif; /*time to make things a wee bit bigger*/
+		}
+		
+		footer {
+			width: 15%;
+		}
+
+		nav.primary {
+            height: 90%;
+			width: 15%;
+		}
+		
+		nav.primary ul li{
+            background: none;
+            height: 24%;
+            margin-left: 0;
+            margin-top: 4%;
+            max-height: 100%;
+            width: 100%;
+        }
+
+        nav.primary ul li:first-child {
+            margin-top: 0;
+        }
+		
+		nav.primary ul > li a {
+            background-size: 50% !important;
+			display: block;
+            position: absolute;
+		}
+
+        section.content {
+            width: 70%;
+        }
+		
+	}
+	
+		/* go on then, one last query.. */
+	@media only screen and (min-width: 1420px) {
+				
+		body {
+			font: 1.1em/1.5em Arial, sans-serif; /*even bigger, why not?*/
+		}
+	
+	}
