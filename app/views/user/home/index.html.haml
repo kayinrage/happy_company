@@ -3,30 +3,29 @@
 - unless @answer.new_record?
   You already answered today but you can change your answer if you want.
 
-= semantic_form_for([:user, @answer], url: @answer.new_record? ? user_answers_path : user_answers_path(@answer)) do |f|
-  = f.input :result, :as => :radio, :collection => [["Yes, I'm very happy about this day :D", 3], ["Yes, this day was nice :)", 2], ["No, it was an average day for me :/", 1], ["No, this day was a big disappointment :(", 0]]
-  = f.button "Save", id: "save_answer_button"
+= semantic_form_for([:user, @answer], url: @answer.new_record? ? user_answers_path : user_answer_path(@answer), html: {id: "answer_form", method: @answer.new_record? ? :post : :put}) do |f|
+  = f.input :result, as: :hidden, label: false
 
   .voting
-    .happy.selected
+    .happy.result{class: "#{"selected" if @answer.result==3}", onclick: "save_mood(3)"}
       .icon
-        %p
-          Yes, I'm very happy about this day
-    .nice
+        %p Yes, I'm very happy<br/>about this day
+    .nice.result{class: "#{"selected" if @answer.result==2}", onclick: "save_mood(2)"}
       .icon
-        %p
-          Yes, this day was nice
-    .average
+        %p Yes, this day was nice
+    .average.result{class: "#{"selected" if @answer.result==1}", onclick: "save_mood(1)"}
       .icon
-        %p
-          No, it was an average day for me
-    .disappointing
+        %p No, it was an average<br/>day for me
+    .disappointing.result{class: "#{"selected" if @answer.result==0}", onclick: "save_mood(0)"}
       .icon
-        %p
-          No, this day was a big disappointment
+        %p No, this day was<br/>a big disappointment
 
-%script
+:javascript
   $('.voting div').height($('.voting div').width());
   $(window).resize(function() {
   $('.voting div').height($('.voting div').width());
   });
+  function save_mood(int) {
+    $('#answer_result').attr('value', int);
+    $('#answer_form').submit();
+  }

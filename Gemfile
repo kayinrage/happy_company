@@ -11,6 +11,7 @@ gem 'activeadmin'
 gem 'meta_search'
 gem 'pry'
 gem 'thin'
+gem "google_visualr", ">= 2.1"
 
 group :development do
   gem 'letter_opener'

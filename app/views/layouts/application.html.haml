@@ -2,6 +2,7 @@
 %html
 %head
 %title HappyCompany
+%script{src: "https://www.google.com/jsapi"}
 = stylesheet_link_tag    "application", :media => "all"
 = javascript_include_tag "application"
 
@@ -11,7 +12,7 @@
   %header
     .va.clearfix
       %h1.logo
-        happycompany
+        Happy Company
       - if current_user
         .user
           You are logged in as:
@@ -49,9 +50,11 @@
               Log out
 
   %section.content
+    - flash.each do |key, value|
+      = content_tag(:div, value, :class => "flash #{key}")
     = yield
 
   %footer
-    Developed by Irek Skrobiś and styled by Arek Janik
+    = "Developed by #{link_to("Irek Skrobiś", "http://selleo.com/people/ireneusz-skrobis", target: "_blank")}. Styled by #{link_to("Arek Janik", "http://selleo.com/people/arkadiusz-janik", target: "_blank")}.".html_safe
 
   %script{src: "menu.js"}

@@ -1,0 +1,33 @@
+= form_tag admin_charts_path, method: :get do
+  TIME:<br/>
+  = radio_button_tag 'time', 'month', true
+  Last month<br/>
+  = radio_button_tag 'time', 'week'
+  Last week<br/>
+
+  TYPE:<br/>
+  = radio_button_tag 'type', 'users', true
+  Users<br/>
+  = radio_button_tag 'type', 'groups'
+  Groups<br/>
+  = radio_button_tag 'type', 'parent_group'
+  Parent groups<br/>
+
+  %div#users
+    - User.all.map{|u| {display_name: u.display_name, id: u.id}}.sort { |a,b| a[:display_name].downcase <=> b[:display_name].downcase }.each do |user|
+      = check_box_tag "users", user[:id], false
+      = user[:display_name]
+
+  %div#groups
+    - Group.order(:name).map{|g| {name: g.name, id: g.id}}.each do |group|
+      = check_box_tag "group", group[:id], false
+      = group[:name]
+
+  %div#super_groups
+    - ParentGroup.order(:name).map{|g| {name: g.name, id: g.id}}.each do |parent_group|
+      = check_box_tag "parent_group", parent_group[:id], false
+      = parent_group[:name]
+
+
+
+  = submit_tag "Generate"

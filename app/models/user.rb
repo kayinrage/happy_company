@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
     email
   end
 
+  def display_name
+    [first_name, last_name].compact.size < 2 ? email : "#{first_name} #{last_name}"
+  end
+
 end

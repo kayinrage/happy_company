@@ -105,6 +105,7 @@ GEM
       formtastic (~> 2.2)
       formtastic-bootstrap
     fssm (0.2.10)
+    google_visualr (2.1.7)
     haml (4.0.0)
       tilt
     haml-rails (0.4)
@@ -257,6 +258,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   formtastic-bootstrap
+  google_visualr (>= 2.1)
   haml-rails
   headless
   jquery-rails
