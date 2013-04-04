@@ -71,11 +71,21 @@ name - user
         - Błażej
         - Szymon
 
+## Set up development environment
+
+I suppose that you already have rails and rvm on your machine :)<br/>
+git clone https://github.com/kayinrage/happy_company.git<br/>
+create .rvmrc (for example with content: rvm use 2.0.0@hc)<br/>
+reload directory and then bundle<br/>
+create database.yml (you can refer to config/database_example.yml)<br/>
+rake db:create db:migrate db:seed<br/>
+and you are ready to work :)<br/>
+
 ---
 
 ### Dependencies
 
-You can find all dependencies in Gemfile but the most important gems are: ActiveAdmin, Haml and Devise and Postgresql (of course database engine can be changed for whatever you want).
+You can find all dependencies in Gemfile but the most important gems are: ActiveAdmin, Haml, Devise, google_visualr and Postgresql (of course database engine can be changed for whatever you want).
 
 ### Credits
 

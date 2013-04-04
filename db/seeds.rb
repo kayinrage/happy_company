@@ -54,4 +54,10 @@ if %w{test development}.include?(Rails.env)
     Utils.add_membership_for_seed(params[:user_name], params[:group_names])
   end
 
+  puts "create random answers for past month"
+
+  User.all.each do |user|
+    (Date.today-30.days..Date.today).to_a.each { |d| user.answers.create({date: d, result: rand(4)}) }
+  end
+
 end
