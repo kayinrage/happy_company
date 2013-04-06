@@ -28,6 +28,9 @@
 
   = submit_tag "Generate"
 
+%div{id:'chart'}
+= render_chart(@chart, 'chart') if @chart
+
 :javascript
   function check_all_groups(id) {
     if ($("#parent_group_" + id).is(':checked'))

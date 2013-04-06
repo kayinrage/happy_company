@@ -4,7 +4,7 @@ class Answer < ActiveRecord::Base
   attr_accessible :date, :result
 
   validates :user_id, :result, :date, presence: true
-  validates :date, uniqueness: true
+  validates :date, uniqueness: {scope: :user_id}
   validates :result, numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 3}
 
   belongs_to :user
