@@ -7,7 +7,7 @@ ActiveAdmin.register Chart do
 
   controller do
     def index
-      # some hopefully useful code
+      @p = Chart.params_processing(params)
       render 'admin/charts/index', :layout => 'active_admin'
     end
   end
