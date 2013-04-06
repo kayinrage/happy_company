@@ -1,7 +1,8 @@
 %h2 Are you happy today?
 
 - unless @answer.new_record?
-  You already answered today but you can change your answer if you want.
+  %p
+    You already answered today but you can change your answer if you want.
 
 = semantic_form_for([:user, @answer], url: @answer.new_record? ? user_answers_path : user_answer_path(@answer), html: {id: "answer_form", method: @answer.new_record? ? :post : :put}) do |f|
   = f.input :result, as: :hidden, label: false

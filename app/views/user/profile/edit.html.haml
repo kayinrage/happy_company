@@ -5,11 +5,11 @@
   = f.input :email
   = f.input :first_name
   = f.input :last_name
-  = f.button "Save", id: "save_personal_data_button"
+  = f.button "Save", id: "save_personal_data_button", class: "ml-160"
 
 
 = semantic_form_for([:user, @user], url: user_profile_path) do |f|
   %h3 Password
   = f.input :password
   = f.input :password_confirmation
-  = f.button "Save", id: "save_personal_data_button"
+  = f.button "Save", id: "save_personal_data_button", class: "ml-160"

@@ -18,16 +18,17 @@ img {
 /*main structure*/
 html {
 	font-size: 100%;
-	background: #f2594b;
+	background: #d4d8dd;
 }
 
 body {
 	font: 0.875em/1.5em Arial, sans-serif; /*base font-size of 14px (14/16 - lineheight based on 21px 1.5x14)*/
-	color: #201e1e;
+	color: #848585;
 }
 
 a {
-	color: #fff;	
+	color: #848585;
+    font-weight: bold;
 }
 
 a:hover {
@@ -38,8 +39,9 @@ p {
 	margin: 0 0 1.5em 0;
 }
 
-ol, ul {
+ol, ul, li {
 	padding: 0;
+    list-style: none;
 }
 
 h1, h2, h3 {
@@ -84,75 +86,46 @@ footer {
 	float: left;
 	width: 100%;
 	padding: 1.5em 4%;
-
-	/*just to pretty things up while we're demoing*/
-	-webkit-transition: all 0.4s ease-out;
-	-moz-transition: all 0.4s ease-out;
-	-o-transition: all 0.4s ease-out;
-	-ms-transition: all 0.4s ease-out;
-	transition: all 0.4s ease-out;
 }
 
 header {
-	background: #63a69f;
-    height: 10%;
+	background: #fcffff;
+    height: 15%;
     padding: 0 3% !important;
 }
 
-nav.primary {
-	background: #f2e1ac;
-}
-
 section.content {
-	background: #f2836b;
+	background: #fcffff;
 }
 
-aside {
-	background: #f2594b;
+.voting > div {
+    width: 50%;
 }
-
-footer {
-	background: #cd2c24;
-}
-
-/*articles*/
-article {
-	padding: 0 0 1.5em;
-	margin: 0 0 2.5em;
-	border-bottom: 1px solid #e57057;
-}
-
-/*footer navs*/
-footer nav {
-	width: 100%;
-}
-
-footer nav ul li a {
-	display: block;
-	text-decoration: none;
-	border-bottom: 1px solid #f2594b;
-}
-
-footer nav ul li:last-child a {
-	border: none;
-}
-
-footer nav ul li a:hover {
-	background: #f2594b;
-	padding: 0 1em;
-}
-
-
-
 
 	/* -------------- media queries*/
 	
 	/* Up to Mobile Landscape Size */
-	@media only screen and (max-width: 479px) {}
+	@media only screen and (max-width: 479px) {
+        section.content div label, section.content li label {
+            text-align: left;
+        }
+
+        section.content input {
+            width: 100%;
+        }
+
+        section.content input[type="checkbox"] {
+            width: auto;
+        }
+    }
 
 	/* Upwards of Mobile Landscape Size  */
 	@media only screen and (min-width: 480px) {
-		
+
+        nav.primary {
+            border-bottom: 1px solid #d4d8dd;
+        }
+
 		nav.primary select {
 			display: none;
 		}
@@ -180,7 +153,7 @@ footer nav ul li a:hover {
         }
 
         nav.primary ul li a p {
-            margin: -4% 0 0 !important;
+            margin: -2% 0 0 !important;
         }
 
         nav.primary ul li:first-child {
@@ -195,18 +168,23 @@ footer nav ul li a:hover {
 			font-weight: bold;
             width: 100%;
 		}
-		
+
 		nav.primary ul li a:hover {
 			background: #424242;
 			cursor: pointer;
 		}
-		
+
 		nav.primary ul li span {
 			display: none;
 		}
 
-        .voting > div {
-            width: 50%;
+        section.content label {
+            width: 160px;
+        }
+
+        .ml-160, #error_explanation {
+            clear: both;
+            margin-left: 160px;
         }
 
     }
@@ -271,10 +249,6 @@ footer nav ul li a:hover {
             width: 47%;
         }
 
-        nav.primary.login ul li {
-            width: 100%;
-        }
-
         section.content {
             width: 100%;
         }
@@ -299,13 +273,28 @@ footer nav ul li a:hover {
 		body {
 			font: 1em/1.5em Arial, sans-serif; /*time to make things a wee bit bigger*/
 		}
+
+        header {
+            border-bottom: 1px solid #00b0bc;
+        }
+        header .shadow {
+            background-image: asset-url('shadow.png', images);
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            clear: both;
+            height: 30px;
+            position: absolute;
+            top: 14.9%;
+            width: 94%;
+        }
 		
 		footer {
 			width: 15%;
 		}
 
 		nav.primary {
-            height: 90%;
+            height: 85%;
 			width: 15%;
 		}
 		
@@ -315,6 +304,10 @@ footer nav ul li a:hover {
             margin-left: 0;
             margin-top: 4%;
             max-height: 100%;
+            width: 100%;
+        }
+
+        nav.primary.login ul li {
             width: 100%;
         }
 
@@ -330,6 +323,16 @@ footer nav ul li a:hover {
 
         section.content {
             width: 70%;
+        }
+
+        section.content, footer {
+            height: 85%;
+        }
+        section.content label {
+            width: 240px;
+        }
+        .ml-160, #error_explanation {
+            margin-left: 240px;
         }
 		
 	}
