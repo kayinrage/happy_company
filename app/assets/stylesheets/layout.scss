@@ -24,8 +24,10 @@ h1 {
 }
 
 h2 {
+  color: #00b0bc;
   font-family: 'BebasNeueRegular', Helvetica, Arial, sans-serif;
   font-size: 300%;
+  line-height: 100%;
 }
 
 .wrapper {
@@ -38,6 +40,13 @@ header {
     display: table-cell;
     vertical-align: middle;
   }
+}
+
+.flash {
+  background: #00b0bc;
+  color: #fff;
+  display: inline-block;
+  padding: 8px;
 }
 
 nav.primary {
@@ -54,7 +63,7 @@ nav.primary {
         padding: 0;
         text-align: center;
         p {
-          color: #000000;
+          color: #00b0bc;
           display: none;
           font-family: 'BebasNeueRegular', Helvetica, Arial, sans-serif;
           font-size: 200%;
@@ -90,9 +99,6 @@ nav.primary {
     #menu_logout_link {
       background-image: asset-url('logout.png', image);
     }
-  }
-  &.login ul li {
-    height: 50%;
   }
 }
 
@@ -151,5 +157,70 @@ nav.primary {
       background-position: 50% 35%;
       background-size: 80%;
     }
+    div {
+      border: 1px solid #fff;
+    }
+  }
+}
+
+ul.readme li:before {
+  color: #00b0bc;
+  content: "\2022";
+}
+
+section.content {
+  label {
+    display: block;
+    float: left;
+    padding: 3px 10px 0 0;
+    text-align: right;
+  }
+  #user_remember_me {
+    float: left;
+    margin: 6px 6px 20px 0;
+  }
+  [for="user_remember_me"] {
+    float: none;
+    text-align: left;
+  }
+  input, button {
+    background: #00b0bc;
+    border: none;
+    color: white;
+    line-height: normal;
+    margin-bottom: 20px;
+    padding: 5px;
+  }
+  button, input[type="submit"] {
+    font-family: 'BebasNeueRegular', Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    padding: 10px;
+    &:hover {
+      background: transparent;
+      color: #00b0bc;
+    }
+  }
+}
+
+footer {
+  font-size: 87.5%;
+  a {
+    color: #00b0bc;
+  }
+}
+
+#error_explanation {
+  background: #00b0bc;
+  color: #fff;
+  margin-bottom: 30px;
+  padding: 8px;
+  h2 {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 0 10px;
+  }
+  ul {
+    margin: 0;
+     padding-left: 0;
   }
 }

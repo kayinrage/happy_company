@@ -17,7 +17,7 @@ class User::AnswersController < User::UserController
     @answer.update_attributes(params[:answer])
     @answer.date = Date.today
     if @answer.save
-      flash[:message] = "You answer has been changed."
+      flash[:message] = "Your answer has been changed."
       redirect_to user_root_path
     else
       flash[:error] = "Something went wrong..."
@@ -30,7 +30,7 @@ class User::AnswersController < User::UserController
     data_table.new_column('string', 'Day')
     data_table.new_column('number', 'Happiness', (0..3))
     data_table.add_rows(current_user.answers.limit(30).order("date desc").reverse.map { |a| [a.date.to_s, a.result] })
-    option = {height: 400, title: 'Your last 30 days', vAxis: { viewWindow: {min: 0, max: 3}, :format => "#", gridlines: {count: 4}}}
+    option = {height: 400, colors: ['#00b0bc'], backgroundColor: '#fcffff', title: 'Your last 30 days', vAxis: { viewWindow: {min: 0, max: 3}, :format => "#", gridlines: {count: 4}}}
     @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, option)
   end
 
