@@ -1,6 +1,7 @@
 ActiveAdmin.register User do
   menu :priority => 2
   config.batch_actions = false
+  actions :all, except: :show
 
   index do
     column :email
@@ -19,20 +20,6 @@ ActiveAdmin.register User do
   filter :first_name
   filter :last_name
 
-  form do |f|
-    f.inputs "User Details" do
-      f.input :email
-      f.input :first_name
-      f.input :last_name
-      if f.object.new_record?
-        f.input :password
-        f.input :password_confirmation
-      else
-        f.input :groups, :as => :check_boxes, :collection => Group.order(:name)
-      end
-    end
-    f.actions
-  end
-
+  form partial: "form"
 
 end

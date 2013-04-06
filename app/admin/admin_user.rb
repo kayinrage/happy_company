@@ -1,6 +1,7 @@
 ActiveAdmin.register AdminUser do
   menu :priority => 1
   config.batch_actions = false
+  actions :all, except: :show
 
   index do                            
     column :email                     
