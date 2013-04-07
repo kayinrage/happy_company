@@ -57,7 +57,7 @@ if %w{test development}.include?(Rails.env)
   puts "create random answers for past month"
 
   User.all.each do |user|
-    (Date.today-30.days..Date.today).to_a.each { |d| user.answers.create({date: d, result: rand(10) == 0 ? rand(4) : 1}) }
+    (Date.today-31.days..Date.today).to_a.each { |d| user.answers.create({date: d, result: rand(10) == 0 ? rand(4) : 1}) }
   end
 
 end

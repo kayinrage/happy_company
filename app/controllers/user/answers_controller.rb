@@ -26,12 +26,7 @@ class User::AnswersController < User::UserController
   end
 
   def index
-    data_table = GoogleVisualr::DataTable.new
-    data_table.new_column('string', 'Day')
-    data_table.new_column('number', 'Happiness', (0..3))
-    data_table.add_rows(current_user.answers.limit(30).order("date desc").reverse.map { |a| [a.date.to_s, a.result] })
-    option = {height: 400, colors: ['#00b0bc'], backgroundColor: '#fcffff', title: 'Your last 30 days', vAxis: { viewWindow: {min: 0, max: 3}, :format => "#", gridlines: {count: 4}}}
-    @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, option)
+    @chart = Chart.for_current_user(current_user)
   end
 
 end
