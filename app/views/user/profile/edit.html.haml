@@ -2,14 +2,14 @@
 
 = semantic_form_for([:user, @user], url: user_profile_path) do |f|
   %h3 Personal data
-  = f.input :email
-  = f.input :first_name
-  = f.input :last_name
+  = f.input :email, input_html:{size: 30}
+  = f.input :first_name, input_html:{size: 30}
+  = f.input :last_name, input_html:{size: 30}
   = f.button "Save", id: "save_personal_data_button", class: "ml-160"
 
 
 = semantic_form_for([:user, @user], url: user_profile_path) do |f|
   %h3 Password
-  = f.input :password
-  = f.input :password_confirmation
+  = f.input :password, input_html:{size: 30}
+  = f.input :password_confirmation, input_html:{size: 30}
   = f.button "Save", id: "save_personal_data_button", class: "ml-160"
