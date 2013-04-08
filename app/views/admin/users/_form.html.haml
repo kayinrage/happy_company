@@ -8,16 +8,17 @@
       = f.input :password_confirmation
     - else
       -#= f.input :groups, :as => :check_boxes, :collection => Group.order("parent_group_id, name")
+      %legend
+        %span Groups
       %li#user_groups_input.check_boxes.input.optional
         %fieldset.choices
-          %legend.label
-            %label Groups
           %input#user_groups_none{:name => "user[group_ids][]", :type => "hidden", :value => ""}/
           - ParentGroup.all.each do |parent|
-            = "#{parent.name}:"
+            %label
+              = "#{parent.name}:"
             %ol.choices-group
-              %li.choice
-                - parent.groups.order(:name).each do |group|
+              - parent.groups.order(:name).each do |group|
+                %li.choice
                   = check_box_tag "user_group_ids_#{group.id}", group.id, @user.groups.include?(group), name: "user[group_ids][]"
                   = label_tag "user_group_ids_#{group.id}", group.name
   = f.actions do

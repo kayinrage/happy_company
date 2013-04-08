@@ -27,3 +27,55 @@
 // .active_admin       applies to any Active Admin namespace
 // .admin_namespace    applies to the admin namespace (eg: /admin)
 // .other_namespace    applies to a custom namespace named other (eg: /other)
+
+body.active_admin form fieldset > ol > li#user_groups_input fieldset ol.choices-group,
+body.active_admin form fieldset > ol > li#charts fieldset ol.choices-group {
+  float: left;
+  margin-bottom: 10px;
+  padding-left: 0;
+  li.choice {
+    float: left;
+    width: 200px;
+    &:nth-of-type(5n+6) {
+      clear: both;
+    }
+    input {
+      float: left;
+      margin: 2px 5px 0 0;
+    }
+    &:nth-of-type(5n+6) {
+      clear: both;
+    }
+  }
+}
+
+body.active_admin form fieldset > ol > li#charts fieldset ol.choices-group {
+  .choice {
+    float: left;
+    width: 200px;
+  }
+  .choice.groups {
+    width: 100%;
+    ol {
+      padding-left: 0;
+      width: 100%;
+      li {
+        float: left;
+        width: 200px;
+        &:nth-of-type(5n+6) {
+          clear: both;
+        }
+        &:first-of-type {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+  &#users_container, &#groups_container {
+    padding-left: 20%;
+    & > label {
+      left: 0;
+      position: absolute;
+    }
+  }
+}

@@ -1,32 +1,48 @@
-= form_tag admin_charts_path, method: :get do
-  TIME:
-  = radio_button_tag 'time', 'month', @p[:time] == "month"
-  = label_tag "time_month", "Last month"
-  = radio_button_tag 'time', 'week', @p[:time] == "week"
-  = label_tag "time_week", "Last week"
-  <br/>
-  TYPE:
-  = radio_button_tag 'type', 'users', @p[:type] == "users", onchange: "$('#users_container').show();$('#groups_container').hide();"
-  = label_tag "type_users", "Users"
-  = radio_button_tag 'type', 'groups', @p[:type] == "groups", onchange: "$('#users_container').hide();$('#groups_container').show();"
-  = label_tag "type_groups", "Groups"
-  <br/>
+= form_tag admin_charts_path, class: "formtastic user", method: :get do
+  %fieldset.inputs
+    %legend
+      %span Generate Charts
+    %ol.choices-group
+      %li.check_boxes.input.optional#charts
+        %fieldset.choices
+          %label Time:
+          %ol.choices-group
+            %li.choice
+              = radio_button_tag 'time', 'month', @p[:time] == "month"
+              = label_tag "time_month", "Last month"
+            %li.choice
+              = radio_button_tag 'time', 'week', @p[:time] == "week"
+              = label_tag "time_week", "Last week"
+          %label Type:
+          %ol.choices-group
+            %li.choice
+              = radio_button_tag 'type', 'users', @p[:type] == "users", onchange: "$('#users_container').show();$('#groups_container').hide();"
+              = label_tag "type_users", "Users"
+            %li.choice
+              = radio_button_tag 'type', 'groups', @p[:type] == "groups", onchange: "$('#users_container').hide();$('#groups_container').show();"
+              = label_tag "type_groups", "Groups"
 
-  %div#users_container
-    - User.all.map{|u| {display_name: u.display_name, id: u.id}}.sort { |a,b| a[:display_name].downcase <=> b[:display_name].downcase }.each do |user|
-      = check_box_tag "user_#{user[:id]}", user[:id], @p[:user_ids].include?(user[:id].to_s), name: "user_ids[]"
-      = label_tag "user_#{user[:id]}", user[:display_name]
+          %ol.choices-group#users_container
+            %label Users:
+            - User.all.map{|u| {display_name: u.display_name, id: u.id}}.sort { |a,b| a[:display_name].downcase <=> b[:display_name].downcase }.each do |user|
+              %li.choice
+                = check_box_tag "user_#{user[:id]}", user[:id], @p[:user_ids].include?(user[:id].to_s), name: "user_ids[]"
+                = label_tag "user_#{user[:id]}", user[:display_name]
 
-  %div#groups_container
-    - ParentGroup.order(:name).each do |parent_group|
-      %div{id: "parent_group_#{parent_group.id}_container"}
-        = check_box_tag "parent_group_#{parent_group.id}", parent_group.id, @p[:parent_group_ids].include?(parent_group[:id].to_s), onclick: "check_all_groups('#{parent_group.id}')", name: "parent_group_ids[]"
-        = label_tag "parent_group_#{parent_group.id}", parent_group.name
-        - parent_group.groups.order(:name).each do |group|
-          = check_box_tag "group_#{group.id}", group.id, @p[:group_ids].include?(group[:id].to_s), name: "group_ids[]"
-          = label_tag "group_#{group.id}", group.name
+          %ol.choices-group#groups_container
+            %label Groups:
+            - ParentGroup.order(:name).each do |parent_group|
+              %li.choice.groups{id: "parent_group_#{parent_group.id}_container"}
+                %ol
+                  %li
+                    = check_box_tag "parent_group_#{parent_group.id}", parent_group.id, @p[:parent_group_ids].include?(parent_group[:id].to_s), onclick: "check_all_groups('#{parent_group.id}')", name: "parent_group_ids[]"
+                    = label_tag "parent_group_#{parent_group.id}", parent_group.name
+                    - parent_group.groups.order(:name).each do |group|
+                      %li
+                        = check_box_tag "group_#{group.id}", group.id, @p[:group_ids].include?(group[:id].to_s), name: "group_ids[]"
+                        = label_tag "group_#{group.id}", group.name
 
-  = submit_tag "Generate"
+        = submit_tag "Generate"
 
 %div{id:'chart'}
 = render_chart(@chart, 'chart') if @chart
