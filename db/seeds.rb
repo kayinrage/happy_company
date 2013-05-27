@@ -14,7 +14,7 @@ if %w{test development}.include?(Rails.env)
    {email: 'darek@happycompany.com', first_name: 'Darek'},
    {email: 'grzegorz@happycompany.com', first_name: 'Grzegorz'},
   ].each do |params|
-    user = User.find_or_create_by_email(params.merge({password: 'secret', password_confirmation: 'secret', last_name: 'Happy'}), as: :user)
+    user = User.find_or_create_by_email(params.merge({password: 'secret', password_confirmation: 'secret', last_name: 'Happy', skip_email_confirmation: true}), as: :admin)
     user.confirm! unless user.confirmed?
   end
 
