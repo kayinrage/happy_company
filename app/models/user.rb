@@ -11,11 +11,16 @@ class User < ActiveRecord::Base
   has_many :groups, through: :memberships
 
   before_create :skip_confirmation_if_enabled
+  after_create :create_first_answer
 
   private
 
   def skip_confirmation_if_enabled
     skip_confirmation! if self.skip_email_confirmation
+  end
+
+  def create_first_answer
+    answers.create(result: 1, date: Date.today)
   end
 
   public

@@ -1,0 +1,6 @@
+<% if @result %>
+    $(".voting div.result").removeClass("selected");
+    $("#answer_<%= @result %>").addClass("selected");
+<% else %>
+    alert("You cannot change result for this answer!");
+<% end %>

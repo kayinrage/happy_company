@@ -1,23 +1,19 @@
 %h2 Are you happy today?
 
-- unless @answer.new_record?
-  %p
-    You already answered today but you can change your answer if you want.
-
-= semantic_form_for([:user, @answer], url: @answer.new_record? ? user_answers_path : user_answer_path(@answer), html: {id: "answer_form", method: @answer.new_record? ? :post : :put}) do |f|
+= semantic_form_for([:user, @answer], url: user_answer_path(@answer), html: {id: "answer_form", method: :put}, remote: true) do |f|
   = f.input :result, as: :hidden, label: false
 
   .voting
-    .happy.result{class: "#{"selected" if @answer.result==3}", onclick: "save_mood(3)"}
+    .happy.result{id: "answer_3", class: "#{"selected" if @answer.selected?(3)}", onclick: "save_mood(3)"}
       .icon
         %p Yes, I'm very happy<br/>about this day
-    .nice.result{class: "#{"selected" if @answer.result==2}", onclick: "save_mood(2)"}
+    .nice.result{id: "answer_2",class: "#{"selected" if @answer.selected?(2)}", onclick: "save_mood(2)"}
       .icon
         %p Yes, this day was nice
-    .average.result{class: "#{"selected" if @answer.result==1}", onclick: "save_mood(1)"}
+    .average.result{id: "answer_1",class: "#{"selected" if @answer.selected?(1)}", onclick: "save_mood(1)"}
       .icon
         %p No, it was an average<br/>day for me
-    .disappointing.result{class: "#{"selected" if @answer.result==0}", onclick: "save_mood(0)"}
+    .disappointing.result{id: "answer_0",class: "#{"selected" if @answer.selected?(0)}", onclick: "save_mood(0)"}
       .icon
         %p No, this day was<br/>a big disappointment
 

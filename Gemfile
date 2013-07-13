@@ -20,17 +20,16 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'database_cleaner'
-  gem 'capybara'
-  gem 'capybara-webkit'
+  gem 'poltergeist'
   gem 'kameleon', '>= 0.2.0'
   gem 'rspec'
+  gem 'rspec-gc-control'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'faker'
   gem 'launchy'
   gem 'headless'
-  gem 'spork'
+  gem 'fuubar'
 end
 
 group :assets do
