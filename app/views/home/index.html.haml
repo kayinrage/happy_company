@@ -4,14 +4,9 @@
   Happy Company is a really simple Ruby on Rails application that will help you to measure happiness in your work environment. There is only one question "Are you happy today?" with four possible answers:
 
 %ul.readme
-  %li
-    Yes, I'm very happy about this day :D (score 3)
-  %li
-    Yes, this day was nice :) (score 2)
-  %li
-    No, it was an average day for me :| (score 1)
-  %li
-    No, this day was a big disappointment :( (score 0)
+  - Answer.result_dictionary.each_pair do |k, v|
+    %li
+      = "#{v} (score #{k})"
 
 %p
   You can always change your daily vote after something awesome happens, and view your votes for the past 30 days.
