@@ -1,0 +1,18 @@
+Are you happy today?
+================================
+
+Hello <%= @user.display_name %>!
+
+
+Please tell me how do you feel today. Are you happy?
+----------------------------------------------------
+<% Answer.result_dictionary.each_pair do |k, v| %>
+    <%= v %>:  <%= @answer.api_link(k) %>
+<% end %>
+----------------------------------------------------
+
+Remember that you can always change your daily vote after
+something awesome happens, and view your votes for the past 30 days.
+To do this please login <%= new_user_session_url %>
+
+This is automatically generated email. Please do not answer it.

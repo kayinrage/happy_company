@@ -1,11 +1,17 @@
 class Answer < ActiveRecord::Base
 
+  RESULT_VERY_HAPPY = 3.freeze
+  RESULT_HAPPY = 2.freeze
+  RESULT_SAD = 1.freeze
+  RESULT_VERY_SAD = 0  .freeze
+  RESULTS = [RESULT_VERY_HAPPY, RESULT_HAPPY, RESULT_SAD, RESULT_VERY_SAD]
+
   attr_accessible :result, as: :user
   attr_accessible :date, :result
 
   validates :user_id, :date, :secret, :result, presence: true
   validates :date, uniqueness: {scope: :user_id}
-  validates :result, inclusion: {in: [0, 1, 2, 3]}
+  validates :result, inclusion: {in: RESULTS}
 
   before_validation :generate_secret
   before_validation :set_result
@@ -47,7 +53,7 @@ class Answer < ActiveRecord::Base
       if answer
         return Utils.api_response("fail", "You cannot answer outdated question!") if answer.outdated?
         return Utils.api_response("fail", "You cannot change your answer through link! If you want to change your answer then please use web application.") if answer.answered?
-        return Utils.api_response("fail", "Result should be within range (0..3)") if !%w{0 1 2 3}.include?(params[:result])
+        return Utils.api_response("fail", "Result should be within range (0..3)") if !RESULTS.map{|i| i.to_s}.include?(params[:result])
         answer.result = params[:result]
         answer.answered = true
         if answer.save
@@ -58,6 +64,13 @@ class Answer < ActiveRecord::Base
       else
         Utils.api_response("fail", "Secret is incorrect!")
       end
+    end
+
+    def result_dictionary
+      {RESULT_VERY_HAPPY => "Yes, I'm very happy about this day :D",
+       RESULT_HAPPY => "Yes, this day was nice :)",
+       RESULT_SAD => "No, it was an average day for me :/",
+       RESULT_VERY_SAD => "No, this day was a big disappointment :("}
     end
 
     def send_notifications
@@ -74,7 +87,9 @@ class Answer < ActiveRecord::Base
   end
 
   def api_link(int)
-    Utils.mailer_host + "/api/answers/#{id}?secret=#{secret}&result=#{int}"
+    "http://" + Utils.mailer_host + "/api/answers/#{id}?secret=#{secret}&result=#{int}"
   end
+
+
 
 end

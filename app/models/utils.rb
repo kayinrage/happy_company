@@ -5,7 +5,7 @@ class Utils
 
   class << self
 
-    def generate_secret(size = 12)
+    def generate_secret(size = 16)
       (0...size).map{ CHAR_SET_FOR_SECRET[rand(CHAR_SET_FOR_SECRET_SIZE)] }.join
     end
 
