@@ -1,46 +1,64 @@
-puts "create default admin"
-AdminUser.find_or_create_by_email(email: 'admin@happycompany.com', password: 'secret', password_confirmation: 'secret')
+require "factory_girl_rails"
+include FactoryGirl::Syntax::Methods
 
-if %w{test development}.include?(Rails.env)
+# ================ helper methods ================ #
 
-  puts "create default users"
-  [{email: 'irek@happycompany.com', first_name: 'Irek'},
-   {email: 'tomek@happycompany.com', first_name: 'Tomek'},
-   {email: 'arek@happycompany.com', first_name: 'Arek'},
-   {email: 'rafal@happycompany.com', first_name: 'Rafal'},
-   {email: 'bartek@happycompany.com', first_name: 'Bartek'},
-   {email: 'blazej@happycompany.com', first_name: 'Blazej'},
-   {email: 'szymon@happycompany.com', first_name: 'Szymon'},
-   {email: 'darek@happycompany.com', first_name: 'Darek'},
-   {email: 'grzegorz@happycompany.com', first_name: 'Grzegorz'},
-  ].each do |params|
-    user = User.find_or_create_by_email(params.merge({password: 'secret', password_confirmation: 'secret', last_name: 'Happy', skip_email_confirmation: true}), as: :admin)
-    user.confirm! unless user.confirmed?
+def header(name)
+  puts "\n\r#{name.center(80, "-")}"
+end
+
+def create_groups_and_attach_them_to_parent(groups, parent)
+  groups.each do |name|
+    group = Group.where(name: name).first
+    unless group
+      group = create(:group, name: name, parent_group_id: parent.id)
+      puts "- #{group.name} (id: #{group.id})"
+    end
+  end
+end
+
+# ================ seed's execution code ================ #
+
+unless %w{test}.include?(Rails.env)
+
+  header("ADMIN")
+  ["admin@happycompany.com"].each do |email|
+    admin = AdminUser.where(email: email).first
+    unless admin
+      admin = create(:admin_user, email: email)
+      puts "- #{admin.email} (id: #{admin.id})"
+    end
   end
 
-  puts "create default parent groups"
+end
+
+if %w{development}.include?(Rails.env)
+
+  header("USERS")
+  %w{Irek Tomek Arek Rafal Bartek Blazej Szymon Darek Grzegorz}.each do |name|
+    email = "#{name.downcase}@happycompany.com"
+    user = User.where(email: email).first
+    unless user
+      user = create(:user, email: email, first_name: name, last_name: 'Happy', skip_email_confirmation: true)
+      puts "- #{user.email} (id: #{user.id})"
+    end
+  end
+
+  header("PARENT GROUPS")
   %w{Rooms Positions Teams}.each do |name|
-    ParentGroup.find_or_create_by_name({name: name}, as: :admin)
+    pg = ParentGroup.where(name: name).first
+    unless pg
+      pg = create(:parent_group, name: name)
+      puts "- #{pg.name} (id: #{pg.id})"
+    end
   end
 
-  rooms_id = ParentGroup.find_by_name('Rooms').id
-  positions_id = ParentGroup.find_by_name('Positions').id
-  teams_id = ParentGroup.find_by_name('Teams').id
+  header("GROUPS")
+  create_groups_and_attach_them_to_parent(%w{200 201 202 203}, ParentGroup.where(name: 'Rooms').first)
+  create_groups_and_attach_them_to_parent(%w{Developers Designers Marketing}, ParentGroup.where(name: 'Positions').first)
+  create_groups_and_attach_them_to_parent(%w{Mariachi Lumberjacks}, ParentGroup.where(name: 'Teams').first)
 
-  puts "create default groups"
-  %w{200 201 202 203}.each do |name|
-    Group.find_or_create_by_name({name: name, parent_group_id: rooms_id}, as: :admin)
-  end
-
-  %w{Developers Designers Marketing}.each do |name|
-    Group.find_or_create_by_name({name: name, parent_group_id: positions_id}, as: :admin)
-  end
-
-  %w{Mariachi Lumberjacks}.each do |name|
-    Group.find_or_create_by_name({name: name, parent_group_id: teams_id}, as: :admin)
-  end
-
-  puts "create default memberships"
+  header("MEMBERSHIPS")
 
   [{user_name: 'Irek', group_names: %w{200 Developers Mariachi}},
    {user_name: 'Tomek', group_names: %w{200 Developers Mariachi}},
@@ -53,11 +71,13 @@ if %w{test development}.include?(Rails.env)
    {user_name: 'Grzegorz', group_names: %w{203 Marketing}}].each do |params|
     Utils.add_membership_for_seed(params[:user_name], params[:group_names])
   end
+  puts "- #{Membership.count} memberships have been created."
 
-  puts "create random answers for past month"
+  header("RANDOM ANSWERS")
 
   User.all.each do |user|
-    (Date.today-31.days..Date.today-1).to_a.each { |d| user.answers.create({date: d, result: rand(10) == 0 ? rand(4) : 1}) }
+    (Date.today-31.days..Date.today-1).to_a.each { |d| create(:answer, user_id: user.id, date: d) }
   end
+  puts "- #{Answer.count} answers have been created."
 
 end
