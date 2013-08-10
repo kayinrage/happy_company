@@ -1,5 +1,5 @@
 ActiveAdmin.register Group do
-  menu :priority => 4
+  menu priority: 4
   config.batch_actions = false
   actions :all, except: :show
 

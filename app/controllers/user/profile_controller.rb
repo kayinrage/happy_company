@@ -1,5 +1,5 @@
 class User::ProfileController < User::UserController
-  defaults :resource_class => User, :instance_name => 'user'
+  defaults resource_class: User, instance_name: 'user'
 
   actions :edit, :update
 

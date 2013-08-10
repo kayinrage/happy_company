@@ -15,7 +15,7 @@ ActiveAdmin.register Chart do
       elsif params[:commit] == "Generate"
         flash[:error] = "You have to choose some users / groups if you want to generate chart"
       end
-      render 'admin/charts/index', :layout => 'active_admin'
+      render 'admin/charts/index', layout: 'active_admin'
     end
   end
 end                                   

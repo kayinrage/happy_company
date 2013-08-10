@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  menu :priority => 2
+  menu priority: 2
   config.batch_actions = false
   actions :all, except: :show
 
@@ -7,7 +7,7 @@ ActiveAdmin.register User do
     column :email
     column :first_name
     column :last_name
-    column "Group", :sortable => false do |user|
+    column "Group", sortable: false do |user|
       user.groups.map(&:name).sort*", "
     end
     column :current_sign_in_at

@@ -12,19 +12,22 @@ gem 'meta_search'
 gem 'pry'
 gem 'thin'
 gem "google_visualr", ">= 2.1"
+gem 'delayed_job_active_record'
 
 group :development do
   gem 'letter_opener'
   gem 'meta_request', '0.2.0'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'guard-rspec'
   gem 'factory_girl_rails'
   gem 'poltergeist'
-  gem 'kameleon', '>= 0.2.0'
-  gem 'rspec'
   gem 'rspec-gc-control'
-  gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'faker'
   gem 'launchy'
