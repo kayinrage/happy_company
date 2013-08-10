@@ -6,8 +6,7 @@ class User::ProfileController < User::UserController
   def update
     resource
     if @user.update_attributes(params[:user], as: :user)
-      flash[:notice] = "Profile has "
-      redirect_to edit_user_profile_path
+      redirect_to edit_user_profile_path, notice: "Profile has been updated"
     else
       render :edit
     end

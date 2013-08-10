@@ -12,43 +12,36 @@
   %header
     .shadow
     .va.clearfix
-      %h1.logo
-        Happy Company
+      %h1.logo Happy Company
       - if current_user
         .user
           You are logged in as:
-          = current_user.email
+          = current_user.display_name
 
   - unless current_user
     %nav.primary.login
       %ul
         %li
           = link_to new_user_session_path, id: "menu_login_link" do
-            %p
-              Log in
+            %p Log in
         %li
           = link_to new_user_registration_path, id: "menu_register_link" do
-            %p
-              Register
+            %p Register
   - else
     %nav.primary
       %ul
         %li
           = link_to user_root_path, id: "menu_home_link" do
-            %p
-              Home
+            %p Home
         %li
           = link_to user_answers_path, id: "menu_answers_link" do
-            %p
-              Answers
+            %p Answers
         %li
           = link_to edit_user_profile_path, id: "menu_profile_link" do
-            %p
-              Profile
+            %p Profile
         %li
           = link_to destroy_user_session_path, method: :delete, id: "menu_logout_link" do
-            %p
-              Log out
+            %p Log out
 
   %section.content
     - flash.each do |key, value|
@@ -56,13 +49,9 @@
     = yield
 
   %footer
-    %p
-      = "Supported by #{link_to("Selleo", "http://selleo.com/", target: "_blank")} - web & mobile software development house".html_safe
-    %p
-      = "Developed by #{link_to("Irek Skrobiś", "http://selleo.com/people/ireneusz-skrobis", target: "_blank")}".html_safe
-    %p
-      = "Styled by #{link_to("Arek Janik", "http://selleo.com/people/arkadiusz-janik", target: "_blank")}".html_safe
-    %p
-      Copyright &copy; 2013 Irek Skrobiś
+    %p= "Supported by #{link_to("Selleo", "http://selleo.com/", target: "_blank")} - web & mobile software development house".html_safe
+    %p= "Developed by #{link_to("Ireneusz Skrobiś", "http://selleo.com/people/ireneusz-skrobis", target: "_blank")}".html_safe
+    %p= "Styled by #{link_to("Arek Janik", "http://selleo.com/people/arkadiusz-janik", target: "_blank")}".html_safe
+    %p Copyright &copy; 2013 Irek Skrobiś
 
-  %script{src: "menu.js"}
+%script{src: "menu.js"}

@@ -1,15 +1,11 @@
 %h2 Happy company
 
-%p
-  Happy Company is a really simple Ruby on Rails application that will help you to measure happiness in your work environment. There is only one question "Are you happy today?" with four possible answers:
+%p Happy Company is a really simple Ruby on Rails application that will help you to measure happiness in your work environment. There is only one question "Are you happy today?" with four possible answers:
 
 %ul.readme
   - Answer.result_dictionary.each_pair do |k, v|
-    %li
-      = "#{v} (score #{k})"
+    %li= "#{v} (score #{k})"
 
-%p
-  You can always change your daily vote after something awesome happens, and view your votes for the past 30 days.
+%p You can always change your daily vote after something awesome happens, and view your votes for the past 30 days.
 
-%p
-  And remember, be happy :)
+%p And remember, be happy :)
