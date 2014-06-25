@@ -74,11 +74,12 @@ name - user
 ## Set up development environment
 
 I suppose that you already have rails and rvm on your machine :)<br/>
-git clone https://github.com/kayinrage/happy_company.git<br/>
-create .rvmrc (for example with content: rvm use 2.0.0@hc)<br/>
+`git clone https://github.com/kayinrage/happy_company.git`<br/>
+create `.ruby-gemset` (for example with content: `hc`)<br/>
+create `.ruby-version` (for example with content: `2.1.0`)<br/>
 reload directory and then bundle<br/>
-create database.yml (you can refer to config/database_example.yml)<br/>
-rake db:create db:migrate db:seed<br/>
+create `database.yml` (you can refer to `config/database_example.yml`)<br/>
+`rake db:create db:migrate db:seed`<br/>
 and you are ready to work :)<br/>
 
 ---
