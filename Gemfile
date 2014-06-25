@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.1.0'
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.18'
 
 gem 'pg'
 gem 'devise'
@@ -12,7 +12,7 @@ gem 'activeadmin'
 gem 'meta_search'
 gem 'pry'
 gem 'thin'
-gem 'google_visualr', '>= 2.1'
+gem 'google_visualr'
 gem 'delayed_job_active_record'
 
 group :development do
@@ -37,9 +37,9 @@ group :test do
 end
 
 group :assets do
-  gem 'sass-rails', '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem 'compass_twitter_bootstrap', '~> 2.0.3'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+  gem 'compass_twitter_bootstrap'
   gem 'compass-rails'
 end
