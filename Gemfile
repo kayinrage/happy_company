@@ -17,23 +17,23 @@ gem 'delayed_job_active_record'
 
 group :development do
   gem 'letter_opener'
-  gem 'meta_request', '0.2.0'
+  gem 'meta_request'
   gem 'rspec-rails'
+end
+
+group :development, :test do
   gem 'factory_girl_rails'
 end
 
 group :test do
-  gem 'rspec'
+  gem 'database_cleaner'
+  gem 'rspec', '2.13.0'
   gem 'rspec-rails'
-  gem 'guard-rspec'
-  gem 'factory_girl_rails'
-  gem 'poltergeist'
-  gem 'rspec-gc-control'
-  gem 'selenium-webdriver'
   gem 'faker'
-  gem 'launchy'
-  gem 'headless'
-  gem 'fuubar'
+  gem 'shoulda-matchers'
+  gem 'timecop'
+  gem 'email_spec'
+  gem 'simplecov', require: false
 end
 
 group :assets do
