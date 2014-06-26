@@ -1,37 +1,28 @@
 require 'spec_helper'
 
 describe ParentGroup do
-
-  it "has valid factory" do
+  it 'has valid factory' do
     build(:parent_group).should be_valid
   end
 
-  context "parent group will not be created" do
-    context "when name" do
-      it "is missing" do
-        build(:parent_group, name: nil).should_not be_valid
+  it { should validate_presence_of(:name) }
+  it { should validate_uniqueness_of(:name) }
+
+  context '#destroy' do
+    let!(:parent_group) { create(:parent_group, name: 'Selleo') }
+
+    context 'when parent group has no organisation' do
+      it 'should delete parent_group' do
+        expect { parent_group.destroy }.to change { ParentGroup.count }.by(-1)
       end
+    end
 
-      it "is duplicated" do
-        create(:parent_group, name: "Selleo").should be_valid
-        build(:parent_group, name: "Selleo").should_not be_valid
+    context 'when parent group has organisation' do
+      before { create(:group, parent_group: parent_group) }
+
+      it 'should not delete parent_group' do
+        expect { parent_group.destroy }.to change { ParentGroup.count }.by(0)
       end
     end
   end
-
-  context "when parent group has organisation" do
-    it "cannot be deleted" do
-      parent_group = create(:parent_group, name: "Selleo")
-      create(:group, parent_group_id: parent_group.id)
-      expect { parent_group.destroy }.to change(ParentGroup, :count).by(0)
-    end
-  end
-
-  context "when parent group has no organisation" do
-    it "can be deleted" do
-      parent_group = create(:parent_group, name: "Selleo")
-      expect { parent_group.destroy }.to change(ParentGroup, :count).by(-1)
-    end
-  end
-
 end

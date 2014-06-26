@@ -19,6 +19,7 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
   config.infer_base_class_for_anonymous_controllers = false
+  I18n.enforce_available_locales = false
 
   config.order = 'random'
   config.render_views = true
