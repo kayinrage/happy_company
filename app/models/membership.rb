@@ -1,5 +1,4 @@
 class Membership < ActiveRecord::Base
-
   attr_accessible :user_id, :group_id, as: :admin
 
   validates :user_id, :group_id, presence: true
@@ -7,5 +6,4 @@ class Membership < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :group
-
 end

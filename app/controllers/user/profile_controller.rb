@@ -6,7 +6,7 @@ class User::ProfileController < User::UserController
   def update
     resource
     if @user.update_attributes(params[:user], as: :user)
-      redirect_to edit_user_profile_path, notice: "Profile has been updated"
+      redirect_to edit_user_profile_path, notice: 'Profile has been updated'
     else
       render :edit
     end
@@ -17,5 +17,4 @@ class User::ProfileController < User::UserController
   def resource
     @user ||= current_user
   end
-
 end

@@ -5,7 +5,7 @@ ActiveAdmin.register Group do
 
   index do
     column :name
-    column "Parent group", sortable: false do |group|
+    column 'Parent group', sortable: false do |group|
       group.parent_group.name
     end
     default_actions
@@ -15,7 +15,7 @@ ActiveAdmin.register Group do
   filter :parent_group
 
   form do |f|
-    f.inputs "Parent Group Details" do
+    f.inputs 'Parent Group Details' do
       f.input :name
       if f.object.new_record?
         f.input :parent_group_id, as: :select, collection: ParentGroup.for_select, include_blank: false

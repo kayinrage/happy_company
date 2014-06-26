@@ -5,5 +5,4 @@ class NotificationMailer < ActionMailer::Base
     @user, @answer = user, answer
     mail(to: @user.email, subject: 'Are you happy today?')
   end
-
 end

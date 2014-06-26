@@ -36,5 +36,4 @@ class User < ActiveRecord::Base
   def name
     display_name
   end
-
 end

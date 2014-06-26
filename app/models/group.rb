@@ -1,5 +1,4 @@
 class Group < ActiveRecord::Base
-
   attr_accessible :name, :parent_group_id, :user_ids, as: :admin
 
   validates :name, presence: true, uniqueness: true
@@ -12,5 +11,4 @@ class Group < ActiveRecord::Base
   def to_s
     name
   end
-
 end

@@ -7,8 +7,8 @@ ActiveAdmin.register User do
     column :email
     column :first_name
     column :last_name
-    column "Group", sortable: false do |user|
-      user.groups.map(&:name).sort*", "
+    column 'Group', sortable: false do |user|
+      user.groups.map(&:name).sort.join(', ')
     end
     column :current_sign_in_at
     column :last_sign_in_at
@@ -20,6 +20,5 @@ ActiveAdmin.register User do
   filter :first_name
   filter :last_name
 
-  form partial: "form"
-
+  form partial: 'form'
 end
