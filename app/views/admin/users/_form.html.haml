@@ -1,5 +1,5 @@
 = semantic_form_for [:admin, @user] do |f|
-  = f.inputs "User Details" do
+  = f.inputs 'User Details' do
     = f.input :email
     = f.input :first_name
     = f.input :last_name
@@ -12,15 +12,15 @@
         %span Groups
       %li#user_groups_input.check_boxes.input.optional
         %fieldset.choices
-          %input#user_groups_none{name: "user[group_ids][]", type: "hidden", value: ""}/
+          %input#user_groups_none{name: 'user[group_ids][]', type: 'hidden', value: ''}/
           - ParentGroup.all.each do |parent|
             %label
               = "#{parent.name}:"
             %ol.choices-group
               - parent.groups.order(:name).each do |group|
                 %li.choice
-                  = check_box_tag "user_group_ids_#{group.id}", group.id, @user.groups.include?(group), name: "user[group_ids][]"
+                  = check_box_tag "user_group_ids_#{group.id}", group.id, @user.groups.include?(group), name: 'user[group_ids][]'
                   = label_tag "user_group_ids_#{group.id}", group.name
   = f.actions do
     = f.action :submit
-    = f.action :cancel, url: admin_users_path, label: "Back to listing", wrapper_html: {class: "cancel"}
+    = f.action :cancel, url: admin_users_path, label: 'Back to listing', wrapper_html: {class: 'cancel'}

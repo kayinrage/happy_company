@@ -2,9 +2,9 @@
 %html
 %head
 %title HappyCompany
-%script{src: "https://www.google.com/jsapi"}
-= stylesheet_link_tag "application", media: "all"
-= javascript_include_tag "application"
+%script{src: 'https://www.google.com/jsapi'}
+= stylesheet_link_tag 'application', media: 'all'
+= javascript_include_tag 'application'
 
 = csrf_meta_tags
 %body
@@ -22,25 +22,25 @@
     %nav.primary.login
       %ul
         %li
-          = link_to new_user_session_path, id: "menu_login_link" do
+          = link_to new_user_session_path, id: 'menu_login_link' do
             %p Log in
         %li
-          = link_to new_user_registration_path, id: "menu_register_link" do
+          = link_to new_user_registration_path, id: 'menu_register_link' do
             %p Register
   - else
     %nav.primary
       %ul
         %li
-          = link_to user_root_path, id: "menu_home_link" do
+          = link_to user_root_path, id: 'menu_home_link' do
             %p Home
         %li
-          = link_to user_answers_path, id: "menu_answers_link" do
+          = link_to user_answers_path, id: 'menu_answers_link' do
             %p Answers
         %li
-          = link_to edit_user_profile_path, id: "menu_profile_link" do
+          = link_to edit_user_profile_path, id: 'menu_profile_link' do
             %p Profile
         %li
-          = link_to destroy_user_session_path, method: :delete, id: "menu_logout_link" do
+          = link_to destroy_user_session_path, method: :delete, id: 'menu_logout_link' do
             %p Log out
 
   %section.content
@@ -49,9 +49,9 @@
     = yield
 
   %footer
-    %p= "Supported by #{link_to("Selleo", "http://selleo.com/", target: "_blank")} - web & mobile software development house".html_safe
-    %p= "Developed by #{link_to("Ireneusz Skrobiś", "http://selleo.com/people/ireneusz-skrobis", target: "_blank")}".html_safe
-    %p= "Styled by #{link_to("Arek Janik", "http://selleo.com/people/arkadiusz-janik", target: "_blank")}".html_safe
+    %p= "Supported by #{link_to('Selleo', 'http://selleo.com/', target: '_blank')} - web & mobile software development house".html_safe
+    %p= "Developed by #{link_to('Ireneusz Skrobiś', 'http://selleo.com/people/ireneusz-skrobis', target: '_blank')}".html_safe
+    %p= "Styled by #{link_to('Arek Janik', 'http://selleo.com/people/arkadiusz-janik', target: '_blank')}".html_safe
     %p Copyright &copy; 2013 Irek Skrobiś
 
-%script{src: "menu.js"}
+%script{src: 'menu.js'}

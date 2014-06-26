@@ -4,27 +4,27 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 </head>
 <body>
-<h1>Are you happy today?</h1>
+    <h1>Are you happy today?</h1>
 
-<p>
-  Hello <%= @user.display_name %>!
-</p>
+    <p>
+      Hello <%= @user.display_name %>!
+    </p>
 
-<p>
-  <b>Please tell me how do you feel today. Are you happy?</b><br/>
-  <% Answer.result_dictionary.each_pair do |k, v| %>
-      <%= link_to v, @answer.api_link(k) %><br/>
-  <% end %>
-</p>
+    <p>
+      <b>Please tell me how do you feel today. Are you happy?</b><br/>
+      <% Answer.result_dictionary.each_pair do |k, v| %>
+          <%= link_to v, @answer.api_link(k) %><br/>
+      <% end %>
+    </p>
 
-<p>
-  Remember that you can always change your daily vote after<br/>
-  something awesome happens, and view your votes for the past 30 days.<br/>
-  To do this please <%= link_to "login", new_user_session_url %>
-</p>
+    <p>
+      Remember that you can always change your daily vote after<br/>
+      something awesome happens, and view your votes for the past 30 days.<br/>
+      To do this please <%= link_to 'login', new_user_session_url %>
+    </p>
 
-<p>
-  This is automatically generated email. Please do not answer it.
-</p>
+    <p>
+      This is automatically generated email. Please do not answer it.
+    </p>
 </body>
 </html>
