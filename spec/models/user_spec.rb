@@ -23,10 +23,5 @@ describe User do
         expect { create(:user, skip_email_confirmation: 1) }.to change { ActionMailer::Base.deliveries.count }.by(0)
       end
     end
-
-    it 'should create answer for current_day' do
-      user = create(:user)
-      expect(user.answers.first.date).to eq(Date.today)
-    end
   end
 end

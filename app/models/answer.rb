@@ -17,23 +17,6 @@ class Answer < ActiveRecord::Base
 
   belongs_to :user
 
-  private
-
-  def generate_secret
-    self.secret = Utils.generate_secret if self.secret.blank?
-  end
-
-  def set_result
-    self.result = user.answers.last.result if self.result.blank?
-  end
-
-  def send_message_to_user
-    #TODO
-    puts "send message to #{user.secret}"
-  end
-
-  public
-
   def self.update_by_user(current_user, params)
     answer = current_user.answers.find_by_id(params[:id])
     if answer and !answer.outdated?
@@ -84,5 +67,24 @@ class Answer < ActiveRecord::Base
 
   def api_link(int)
     "http://" + Utils.mailer_host + "/api/answers/#{id}?secret=#{secret}&result=#{int}"
+  end
+
+  private
+
+  def generate_secret
+    self.secret = Utils.generate_secret if self.secret.blank?
+  end
+
+  def set_result
+    self.result = if result.present?
+                    result
+                  else
+                    user.answers.last.result rescue 1
+                  end
+  end
+
+  def send_message_to_user
+    #TODO
+    puts "send message to #{user.secret}"
   end
 end
