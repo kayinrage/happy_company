@@ -24,7 +24,6 @@ class Chart < ActiveRecord::Base
     data_table.add_rows(user.answers.limit(30).order('date desc').reverse.map { |a| [a.date.to_s, a.result] })
     option = {height: 400, colors: ['#00b0bc'], backgroundColor: '#fcffff', title: 'Your last 30 days', vAxis: {viewWindow: {min: 0, max: 3}, format: '#', gridlines: {count: 4}}}
     GoogleVisualr::Interactive::AreaChart.new(data_table, option)
-
   end
 
   def self.for_admin(params)
@@ -34,6 +33,8 @@ class Chart < ActiveRecord::Base
     option = {height: 400, title: "Last #{number_of_days(params)-1} days", vAxis: {viewWindow: {min: 0, max: 3}, format: '#', gridlines: {count: 4}}}
     GoogleVisualr::Interactive::LineChart.new(data_table, option)
   end
+
+  private
 
   def self.data_table_for_admin_chart(data_table, params)
     object_name = params[:type].singularize

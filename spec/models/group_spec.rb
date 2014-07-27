@@ -9,7 +9,7 @@ describe Group do
   it { should validate_presence_of(:parent_group_id) }
   it { should validate_uniqueness_of(:name) }
 
-  context '#to_s' do
+  describe '#to_s' do
     let(:group) { create(:parent_group, name: 'Selleo') }
 
     it 'should returns name of group' do
