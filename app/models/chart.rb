@@ -1,4 +1,4 @@
-class Chart < ActiveRecord::Base
+class Chart
   WEEK_DAYS = 8
   MONTH_DAYS = 31
 
