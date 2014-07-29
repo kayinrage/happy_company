@@ -26,4 +26,23 @@ describe Utils do
       expect(Utils.api_response('200', 'everything is awesome')).to eq({status: '200', message: 'everything is awesome'})
     end
   end
+
+  describe '.add_membership_for_seed' do
+    before do
+      create(:group, name: 'Selleo')
+      create(:group, name: 'RubyArt')
+      create(:group, name: 'Ubisoft')
+    end
+    let!(:user) { create(:user, first_name: 'Irek') }
+    let(:perform) { Utils.add_membership_for_seed('Irek', ['RubyArt', 'Selleo']) }
+
+    it 'add two groups to user' do
+      expect { perform }.to change { user.reload.groups.count }.from(0).to(2)
+    end
+
+    it 'second perform will not create not necessary memberships' do
+      perform
+      expect { perform }.not_to change { Membership.count }
+    end
+  end
 end

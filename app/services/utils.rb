@@ -1,6 +1,6 @@
 class Utils
-  CHAR_SET_FOR_SECRET = [('a'..'z'), ('A'..'Z'), (0..9)].map { |i| i.to_a }.flatten
-  CHAR_SET_FOR_SECRET_SIZE = CHAR_SET_FOR_SECRET.size
+  CHAR_SET_FOR_SECRET = [('a'..'z'), ('A'..'Z'), (0..9)].map { |i| i.to_a }.flatten.freeze
+  CHAR_SET_FOR_SECRET_SIZE = CHAR_SET_FOR_SECRET.size.freeze
 
   def self.generate_secret(size = 16)
     (0...size).map { CHAR_SET_FOR_SECRET[rand(CHAR_SET_FOR_SECRET_SIZE)] }.join
