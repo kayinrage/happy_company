@@ -12,12 +12,6 @@ class User < ActiveRecord::Base
 
   before_create :skip_confirmation_if_enabled
 
-  private
-
-  def skip_confirmation_if_enabled
-    skip_confirmation! if self.skip_email_confirmation
-  end
-
   public
 
   def to_s
@@ -28,7 +22,11 @@ class User < ActiveRecord::Base
     [first_name, last_name].compact.size < 2 ? email : "#{first_name} #{last_name}"
   end
 
-  def name
-    display_name
+  alias_method :name, :display_name
+
+  private
+
+  def skip_confirmation_if_enabled
+    skip_confirmation! if self.skip_email_confirmation
   end
 end

@@ -24,4 +24,41 @@ describe User do
       end
     end
   end
+
+  describe '#to_s' do
+    let(:user) { create(:user, email: 'irek@happy.com') }
+
+    it 'should returns email' do
+      expect(user.to_s).to eq 'irek@happy.com'
+    end
+  end
+
+  describe '#display_name && name (alias method)' do
+    context 'when first_name and last_name are set' do
+      let(:user) { create(:user, email: 'irek@happy.com', first_name: 'Irek', last_name: 'Happy') }
+
+      it 'should returns first_name and last_name' do
+        expect(user.display_name).to eq 'Irek Happy'
+        expect(user.name).to eq 'Irek Happy'
+      end
+    end
+
+    context 'when first_name is set but last_name not' do
+      let(:user) { create(:user, email: 'irek@happy.com', first_name: 'Irek', last_name: nil) }
+
+      it 'should return email' do
+        expect(user.display_name).to eq 'irek@happy.com'
+        expect(user.name).to eq 'irek@happy.com'
+      end
+    end
+
+    context 'when first_name is set but last_name not' do
+      let(:user) { create(:user, email: 'irek@happy.com', first_name: nil, last_name: 'Happy') }
+
+      it 'should return email' do
+        expect(user.display_name).to eq 'irek@happy.com'
+        expect(user.name).to eq 'irek@happy.com'
+      end
+    end
+  end
 end
