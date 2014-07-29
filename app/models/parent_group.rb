@@ -18,7 +18,7 @@ class ParentGroup < ActiveRecord::Base
   public
 
   def self.for_select
-    all.map{|pg| [pg.name, pg.id]}
+    all.map { |pg| [pg.name, pg.id] }
   end
 
   def to_s
