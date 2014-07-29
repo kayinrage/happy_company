@@ -102,6 +102,40 @@ describe Chart do
       end
     end
 
-    it 'more examples needed!'
+    context 'when params has type "groups", time "week" and "group_ids"' do
+      before do
+        create(:membership, user: user_3, group: group_1)
+        create(:answer, user: user_3, date: Date.today - 2.days, result: 3)
+        create(:answer, user: user_3, date: Date.today - 1.days, result: 3)
+        create(:answer, user: user_3, date: Date.today, result: 3)
+      end
+      let(:user_3) { create(:user) }
+
+      let(:params) { {type: 'groups', time: 'week', group_ids: [group_1.id.to_s, group_2.id.to_s], user_ids: [], parent_group_ids: []}.with_indifferent_access }
+
+      it 'should returns chart with correct options' do
+        expect(perform.options).to eq({'height' => 400,
+                                       'title' => 'Last 7 days',
+                                       'vAxis' => {viewWindow: {min: 0, max: 3}, format: '#', gridlines: {count: 4}}})
+      end
+
+      it 'should returns chart with correct data_table cols' do
+        expect(perform.data_table.cols).to eq [{type: 'string', label: 'Day'},
+                                               {type: 'number', label: 'Selleo'},
+                                               {type: 'number', label: 'RubyArt'}]
+      end
+
+      it 'should returns chart with correct data_table rows first values' do
+        expect(perform.data_table.rows.map { |a| a.first.v }).to eq (Date.parse('2014-07-19')..Date.parse('2014-07-26')).map(&:to_s)
+      end
+
+      it 'should returns chart with correct data_table rows second values' do
+        expect(perform.data_table.rows.map { |a| a[1].v }).to eq([-1.0] * 6 + [2.0, 2.5])
+      end
+
+      it 'should returns chart with correct data_table rows second values' do
+        expect(perform.data_table.rows.map { |a| a[2].v }).to eq([-1.0] * 6 + [0.0, 1.0])
+      end
+    end
   end
 end
