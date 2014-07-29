@@ -5,10 +5,11 @@ class UserCreator
     @user = user
   end
 
-  def process
+  def perform!
     if user.valid?
       user.save
       create_first_answer
+      user
     else
       false
     end
