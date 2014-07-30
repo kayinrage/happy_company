@@ -31,3 +31,4 @@
 /public/assets
 /public/system
 /.sass-cache
+/config/application.yml

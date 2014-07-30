@@ -14,6 +14,7 @@ gem 'pry'
 gem 'thin'
 gem 'google_visualr'
 gem 'delayed_job_active_record'
+gem 'figaro'
 
 group :development do
   gem 'letter_opener'

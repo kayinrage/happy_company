@@ -93,6 +93,9 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     formtastic (2.2.1)
       actionpack (>= 3.0)
     formtastic-bootstrap (3.0.0)
@@ -243,6 +246,7 @@ DEPENDENCIES
   devise
   email_spec
   factory_girl_rails
+  figaro
   formtastic-bootstrap
   google_visualr
   haml-rails
