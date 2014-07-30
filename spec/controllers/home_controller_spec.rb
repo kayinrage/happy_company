@@ -7,6 +7,7 @@ describe HomeController do
 
       it { should render_template 'index' }
     end
+
     context 'when user logged in' do
       include_context 'user signed in'
       before { get :index }
