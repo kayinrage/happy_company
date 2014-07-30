@@ -1,9 +1,5 @@
 require 'spec_helper'
 
-RSpec.configure do |config|
-  config.include Devise::TestHelpers, type: :controller
-end
-
 describe Devise::PasswordsController do
   render_views
   before { request.env['devise.mapping'] = Devise.mappings[:user] }
