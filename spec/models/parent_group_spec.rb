@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ParentGroup do
   it 'has valid factory' do
-    build(:parent_group).should be_valid
+    expect(build(:parent_group)).to be_valid
   end
 
   it { should validate_presence_of(:name) }

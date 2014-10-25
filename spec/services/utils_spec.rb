@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Utils do
   describe '.generate_secret' do
@@ -23,7 +23,7 @@ describe Utils do
 
   describe '.api_response' do
     it 'should return hash with correct key-values' do
-      expect(Utils.api_response('200', 'everything is awesome')).to eq({status: '200', message: 'everything is awesome'})
+      expect(Utils.api_response('200', 'everything is awesome')).to eq(status: '200', message: 'everything is awesome')
     end
   end
 

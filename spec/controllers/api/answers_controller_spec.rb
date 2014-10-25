@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Api::AnswersController do
   render_views
@@ -8,10 +8,10 @@ describe Api::AnswersController do
 
     context 'with correct params' do
       let(:params) { {id: '1', secret: 'secret', result: '3'} }
-      before { Answer.stub(:update_through_api).and_return(status: 'success', message: 'success') }
+      before { allow(Answer).to receive(:update_through_api).and_return(status: 'success', message: 'success') }
 
       it 'should update answer' do
-        Answer.should_receive(:update_through_api).with(hash_including(params)).and_call_original
+        expect(Answer).to receive(:update_through_api).with(hash_including(params)).and_call_original
         call_request
       end
 
@@ -39,10 +39,10 @@ describe Api::AnswersController do
 
     context 'with wrong params' do
       let(:params) { {id: '1', secret: nil, result: '3'} }
-      before { Answer.stub(:update_through_api).and_return(status: 'fail', message: 'fail') }
+      before { allow(Answer).to receive(:update_through_api).and_return(status: 'fail', message: 'fail') }
 
       it 'should update answer' do
-        Answer.should_receive(:update_through_api).with(hash_including(params)).and_call_original
+        expect(Answer).to receive(:update_through_api).with(hash_including(params)).and_call_original
         call_request
       end
 

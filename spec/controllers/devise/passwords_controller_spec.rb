@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Devise::PasswordsController do
   render_views
@@ -46,8 +46,9 @@ describe Devise::PasswordsController do
     end
 
     describe '#update' do
+      let(:tokens) { %w(REa8RXbZa6xxhyUos6Ku dc308b77c28c83a2226bdf8950dbca4826c99ded1f2630073d8a3d6c981a0883) }
       before do
-        Devise::TokenGenerator.any_instance.stub(:generate).and_return(%w(REa8RXbZa6xxhyUos6Ku dc308b77c28c83a2226bdf8950dbca4826c99ded1f2630073d8a3d6c981a0883))
+        allow_any_instance_of(Devise::TokenGenerator).to receive(:generate).and_return(tokens)
         subject.confirm!
         subject.send_reset_password_instructions
       end

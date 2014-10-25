@@ -1,14 +1,14 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Answer do
   it 'has valid factory' do
-    build(:answer).should be_valid
+    expect(build(:answer)).to be_valid
   end
 
   it { should validate_presence_of(:user_id) }
   it { should validate_presence_of(:date) }
   it { should validate_uniqueness_of(:date).scoped_to(:user_id) }
-  it { should ensure_inclusion_of(:result).in_array([3, 2, 1, 0]) }
+  it { should validate_inclusion_of(:result).in_array([3, 2, 1, 0]) }
 
   describe '#save' do
     let(:answer) { build(:answer) }
@@ -120,7 +120,7 @@ describe Answer do
         end
 
         it 'should return success with correct message' do
-          expect(perform).to eq({status: 'success', message: 'Answer has been successfully saved!'})
+          expect(perform).to eq(status: 'success', message: 'Answer has been successfully saved!')
         end
       end
 
@@ -132,7 +132,7 @@ describe Answer do
         end
 
         it 'should return fail with correct message' do
-          expect(perform).to eq({status: 'fail', message: 'You cannot answer outdated question!'})
+          expect(perform).to eq(status: 'fail', message: 'You cannot answer outdated question!')
         end
       end
 
@@ -144,7 +144,7 @@ describe Answer do
         end
 
         it 'should return fail with correct message' do
-          expect(perform).to eq({status: 'fail', message: 'You cannot change your answer through link! If you want to change your answer then please use web application.'})
+          expect(perform).to eq(status: 'fail', message: 'You cannot change your answer through link! If you want to change your answer then please use web application.')
         end
       end
     end
@@ -160,7 +160,7 @@ describe Answer do
         end
 
         it 'should return fail with correct message' do
-          expect(perform).to eq({status: 'fail', message: 'Secret is incorrect!'})
+          expect(perform).to eq(status: 'fail', message: 'Secret is incorrect!')
         end
       end
 
@@ -172,7 +172,7 @@ describe Answer do
         end
 
         it 'should return fail with correct message' do
-          expect(perform).to eq({status: 'fail', message: 'Secret is incorrect!'})
+          expect(perform).to eq(status: 'fail', message: 'Secret is incorrect!')
         end
       end
 
@@ -184,7 +184,7 @@ describe Answer do
         end
 
         it 'should return fail with correct message' do
-          expect(perform).to eq({status: 'fail', message: 'Result should be within range (0..3)'})
+          expect(perform).to eq(status: 'fail', message: 'Result should be within range (0..3)')
         end
       end
     end

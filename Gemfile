@@ -27,7 +27,7 @@ end
 
 group :test do
   gem 'database_cleaner'
-  gem 'rspec', '2.14.1'
+  gem 'rspec'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'timecop'

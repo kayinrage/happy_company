@@ -1,5 +1,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 
+
 if ENV['WITH_SIMPLE_COV']
   require 'simplecov'
   SimpleCov.start 'rails'
@@ -8,6 +9,8 @@ end
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'email_spec'
+
+ActiveRecord::Migration.maintain_test_schema!
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Delayed::Worker.delay_jobs = false
@@ -19,6 +22,7 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
   config.infer_base_class_for_anonymous_controllers = false
+  config.infer_spec_type_from_file_location!
   I18n.enforce_available_locales = false
 
   config.order = 'random'

@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Group do
   it 'has valid factory' do
-    build(:group).should be_valid
+    expect(build(:group)).to be_valid
   end
 
   it { should validate_presence_of(:name) }

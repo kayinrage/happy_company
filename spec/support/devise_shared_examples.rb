@@ -7,8 +7,9 @@ shared_examples 'change password create valid attributes' do |type|
     end
 
     context 'registration attempt' do
+      let(:tokens) { %w(REa8RXbZa6xxhyUos6Ku dc308b77c28c83a2226bdf8950dbca4826c99ded1f2630073d8a3d6c981a0883) }
       before do
-        Devise::TokenGenerator.any_instance.stub(:generate).and_return(%w(REa8RXbZa6xxhyUos6Ku dc308b77c28c83a2226bdf8950dbca4826c99ded1f2630073d8a3d6c981a0883))
+        allow_any_instance_of(Devise::TokenGenerator).to receive(:generate).and_return(tokens)
         call_request
       end
 
@@ -20,10 +21,10 @@ shared_examples 'change password create valid attributes' do |type|
       context 'registration email' do
         let(:email) { ActionMailer::Base.deliveries.last }
 
-        it { email.should deliver_to(subject.email) }
-        it { email.should deliver_from('no-replay@happycompany.com') }
-        it { email.should have_subject('Reset password instructions') }
-        it { email.should have_body_text("/users/password/edit?reset_password_token=REa8RXbZa6xxhyUos6Ku") }
+        it { expect(email).to deliver_to(subject.email) }
+        it { expect(email).to deliver_from('no-replay@happycompany.com') }
+        it { expect(email).to have_subject('Reset password instructions') }
+        it { expect(email).to have_body_text("/users/password/edit?reset_password_token=REa8RXbZa6xxhyUos6Ku") }
       end
     end
   end

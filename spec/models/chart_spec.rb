@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Chart do
   before { Timecop.freeze(Time.parse('27-07-2014')) }
@@ -11,7 +11,7 @@ describe Chart do
       let(:params) { {'time' => 'month', 'type' => 'users', 'user_ids' => %w(5 4)} }
 
       it 'should returns correct params' do
-        expect(perform).to eq({type: 'users', time: 'month', group_ids: [], user_ids: %w(5 4), parent_group_ids: []})
+        expect(perform).to eq(type: 'users', time: 'month', group_ids: [], user_ids: %w(5 4), parent_group_ids: [])
       end
     end
 
@@ -19,7 +19,7 @@ describe Chart do
       let(:params) { {'time' => 'week', 'type' => 'groups', 'user_ids' => %w(1 4), 'parent_group_ids' => %w(2)} }
 
       it 'should returns correct params' do
-        expect(perform).to eq({type: 'groups', time: 'week', group_ids: [], user_ids: [], parent_group_ids: %w(2)})
+        expect(perform).to eq(type: 'groups', time: 'week', group_ids: [], user_ids: [], parent_group_ids: %w(2))
       end
     end
 
@@ -27,7 +27,7 @@ describe Chart do
       let(:params) { {'time' => 'week', 'type' => 'groups', 'user_ids' => %w(1 4), 'parent_group_ids' => %w(2), 'group_ids' => %w(1 2)} }
 
       it 'should returns correct params' do
-        expect(perform).to eq({type: 'groups', time: 'week', group_ids: %w(1 2), user_ids: [], parent_group_ids: %w(2)})
+        expect(perform).to eq(type: 'groups', time: 'week', group_ids: %w(1 2), user_ids: [], parent_group_ids: %w(2))
       end
     end
   end
@@ -40,11 +40,11 @@ describe Chart do
     let(:perform) { Chart.for_current_user(user) }
 
     it 'should returns chart with correct options' do
-      expect(perform.options).to eq({'height' => 400,
-                                     'colors' => ['#00b0bc'],
-                                     'backgroundColor' => '#fcffff',
-                                     'title' => 'Your last 30 days',
-                                     'vAxis' => {viewWindow: {min: 0, max: 3}, format: '#', gridlines: {count: 4}}})
+      expect(perform.options).to eq('height' => 400,
+                                    'colors' => ['#00b0bc'],
+                                    'backgroundColor' => '#fcffff',
+                                    'title' => 'Your last 30 days',
+                                    'vAxis' => {viewWindow: {min: 0, max: 3}, format: '#', gridlines: {count: 4}})
     end
 
     it 'should returns chart with correct data_table dates' do
@@ -78,9 +78,9 @@ describe Chart do
       let(:params) { {type: 'users', time: 'month', group_ids: [], user_ids: [user_1.id.to_s, user_2.id.to_s], parent_group_ids: []}.with_indifferent_access }
 
       it 'should returns chart with correct options' do
-        expect(perform.options).to eq({'height' => 400,
-                                       'title' => 'Last 30 days',
-                                       'vAxis' => {viewWindow: {min: 0, max: 3}, format: '#', gridlines: {count: 4}}})
+        expect(perform.options).to eq('height' => 400,
+                                      'title' => 'Last 30 days',
+                                      'vAxis' => {viewWindow: {min: 0, max: 3}, format: '#', gridlines: {count: 4}})
       end
 
       it 'should returns chart with correct data_table cols' do
@@ -114,9 +114,9 @@ describe Chart do
       let(:params) { {type: 'groups', time: 'week', group_ids: [group_1.id.to_s, group_2.id.to_s], user_ids: [], parent_group_ids: []}.with_indifferent_access }
 
       it 'should returns chart with correct options' do
-        expect(perform.options).to eq({'height' => 400,
-                                       'title' => 'Last 7 days',
-                                       'vAxis' => {viewWindow: {min: 0, max: 3}, format: '#', gridlines: {count: 4}}})
+        expect(perform.options).to eq('height' => 400,
+                                      'title' => 'Last 7 days',
+                                      'vAxis' => {viewWindow: {min: 0, max: 3}, format: '#', gridlines: {count: 4}})
       end
 
       it 'should returns chart with correct data_table cols' do
