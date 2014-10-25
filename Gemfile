@@ -1,15 +1,14 @@
 source 'https://rubygems.org'
 
 ruby '2.1.0'
-gem 'rails', '3.2.18'
+gem 'rails', '4.1.6'
 
 gem 'pg'
 gem 'devise'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'formtastic-bootstrap'
-gem 'activeadmin'
-gem 'meta_search'
+gem 'activeadmin', github: 'activeadmin'
 gem 'pry'
 gem 'thin'
 gem 'google_visualr'
@@ -28,7 +27,7 @@ end
 
 group :test do
   gem 'database_cleaner'
-  gem 'rspec', '2.13.0'
+  gem 'rspec', '2.14.1'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'timecop'
@@ -37,7 +36,7 @@ group :test do
 end
 
 group :assets do
-  gem 'sass-rails'
+  gem 'sass-rails', github: 'rails/sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'compass_twitter_bootstrap'

@@ -5,7 +5,14 @@ class User::AnswersController < User::UserController
 
   def update
     respond_to do |format|
-      format.js { @result = Answer.update_by_user(current_user, params) }
+      format.js { @result = Answer.update_by_user(current_user, answer_params) }
     end
+  end
+
+  private
+
+  def answer_params
+    # TODO narrow it down! changing update_by_user required
+    params.permit!
   end
 end

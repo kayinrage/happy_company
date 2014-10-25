@@ -7,7 +7,6 @@
       = f.input :password
       = f.input :password_confirmation
     - else
-      -#= f.input :groups, as: :check_boxes, collection: Group.order("parent_group_id, name")
       %legend
         %span Groups
       %li#user_groups_input.check_boxes.input.optional

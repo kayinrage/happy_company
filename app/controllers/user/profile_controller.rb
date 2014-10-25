@@ -5,7 +5,7 @@ class User::ProfileController < User::UserController
 
   def update
     resource
-    if @user.update_attributes(params[:user], as: :user)
+    if @user.update_attributes(user_params)
       redirect_to edit_user_profile_path, notice: 'Profile has been updated'
     else
       render :edit
@@ -16,5 +16,9 @@ class User::ProfileController < User::UserController
 
   def resource
     @user ||= current_user
+  end
+
+  def user_params
+    params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
   end
 end

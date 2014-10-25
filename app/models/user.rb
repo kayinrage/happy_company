@@ -1,14 +1,11 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  attr_accessor :skip_email_confirmation
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, as: :user
-  attr_accessible :email, :first_name, :last_name, :group_ids, :password, :password_confirmation, :skip_email_confirmation, as: :admin
-
   has_many :answers
   has_many :memberships
   has_many :groups, through: :memberships
+
+  attr_accessor :skip_email_confirmation
 
   before_create :skip_confirmation_if_enabled
 

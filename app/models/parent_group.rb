@@ -1,11 +1,9 @@
 class ParentGroup < ActiveRecord::Base
-  attr_accessible :name, as: :admin
-
-  validates :name, presence: true, uniqueness: true
-
   has_many :groups
   has_many :memberships, through: :groups
   has_many :users, through: :memberships
+
+  validates :name, presence: true, uniqueness: true
 
   before_destroy :protect_if_has_group
 
@@ -18,7 +16,7 @@ class ParentGroup < ActiveRecord::Base
   public
 
   def self.for_select
-    all.map { |pg| [pg.name, pg.id] }
+    all.map { |parent_group| [parent_group.name, parent_group.id] }
   end
 
   def to_s

@@ -5,8 +5,7 @@ class Answer < ActiveRecord::Base
   RESULT_VERY_SAD = 0.freeze
   RESULTS = [RESULT_VERY_HAPPY, RESULT_HAPPY, RESULT_SAD, RESULT_VERY_SAD]
 
-  attr_accessible :result, as: :user
-  attr_accessible :date, :result
+  belongs_to :user
 
   validates :user_id, :date, :secret, :result, presence: true
   validates :date, uniqueness: {scope: :user_id}
@@ -14,8 +13,6 @@ class Answer < ActiveRecord::Base
 
   before_validation :generate_secret
   before_validation :set_result
-
-  belongs_to :user
 
   def self.update_by_user(current_user, params)
     answer = current_user.answers.find_by_id(params[:id])

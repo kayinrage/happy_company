@@ -3,12 +3,14 @@ ActiveAdmin.register Group do
   config.batch_actions = false
   actions :all, except: :show
 
+  permit_params :name, :parent_group_id, user_ids: []
+
   index do
     column :name
     column 'Parent group', sortable: false do |group|
       group.parent_group.name
     end
-    default_actions
+    actions
   end
 
   filter :name

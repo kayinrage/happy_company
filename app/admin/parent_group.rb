@@ -3,9 +3,11 @@ ActiveAdmin.register ParentGroup do
   config.batch_actions = false
   actions :all, except: :show
 
+  permit_params :name
+
   index do
     column :name
-    default_actions
+    actions
   end
 
   filter :name

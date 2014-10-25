@@ -3,12 +3,14 @@ ActiveAdmin.register AdminUser do
   config.batch_actions = false
   actions :all, except: :show
 
+  permit_params :email, :password, :password_confirmation
+
   index do
     column :email
     column :current_sign_in_at
     column :last_sign_in_at
     column :sign_in_count
-    default_actions
+    actions
   end
 
   filter :email
