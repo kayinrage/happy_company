@@ -25,24 +25,6 @@ class Answer < ActiveRecord::Base
     end
   end
 
-  def self.update_through_api(params)
-    answer = where(id: params[:id], secret: params[:secret]).first
-    if answer
-      return Utils.api_response('fail', 'You cannot answer outdated question!') if answer.outdated?
-      return Utils.api_response('fail', 'You cannot change your answer through link! If you want to change your answer then please use web application.') if answer.answered?
-      return Utils.api_response('fail', 'Result should be within range (0..3)') if !RESULTS.map { |i| i.to_s }.include?(params[:result])
-      answer.result = params[:result]
-      answer.answered = true
-      if answer.save
-        Utils.api_response('success', 'Answer has been successfully saved!')
-      else
-        Utils.api_response('fail', 'Answer has not been saved!')
-      end
-    else
-      Utils.api_response('fail', 'Secret is incorrect!')
-    end
-  end
-
   def self.result_dictionary
     {RESULT_VERY_HAPPY => "Yes, I'm very happy about this day :D",
      RESULT_HAPPY => 'Yes, this day was nice :)',
