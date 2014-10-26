@@ -1,18 +1,27 @@
 class User::AnswersController < User::UserController
+  before_action :get_answer, only: :update
+
   def index
     @chart = Chart.for_current_user(current_user)
   end
 
   def update
     respond_to do |format|
-      format.js { @result = Answer.update_by_user(current_user, answer_params) }
+      format.js { result }
     end
   end
 
   private
 
+  def get_answer
+    @answer = current_user.answers.find_by_id(params[:id])
+  end
+
+  def result
+    @result = @answer ? @answer.update_by_user(answer_params) : false
+  end
+
   def answer_params
-    # TODO narrow it down! changing update_by_user required
-    params.permit!
+    params.require(:answer).permit(:result)
   end
 end

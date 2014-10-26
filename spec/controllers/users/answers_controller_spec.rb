@@ -22,13 +22,26 @@ describe User::AnswersController do
   end
 
   describe '#update' do
-    let(:params) { {id: '1', result: '3'} }
+    let(:answer) { create(:answer, user: user) }
     let(:call_request) { xhr :put, :update, params }
-    before { allow(Answer).to receive(:update_by_user).and_return(true) }
 
-    it 'should update answer' do
-      expect(Answer).to receive(:update_by_user).with(user, hash_including(params)).and_call_original
-      call_request
+    context 'correct params' do
+      let(:params) { {id: answer.id, answer: {result: '3'}} }
+      before { allow_any_instance_of(Answer).to receive(:update_by_user).and_return(true) }
+
+      it 'should update answer' do
+        expect_any_instance_of(Answer).to receive(:update_by_user).with(result: '3').and_call_original
+        call_request
+      end
+    end
+
+    context 'wrong id' do
+      let(:params) { {id: '0', answer: {result: '3'}} }
+
+      it 'should NOT update answer' do
+        expect_any_instance_of(Answer).not_to receive(:update_by_user)
+        call_request
+      end
     end
   end
 end

@@ -48,15 +48,14 @@ describe Answer do
     end
   end
 
-  describe '.update_by_user' do
-    let(:user) { create(:user) }
-    let(:perform) { described_class.update_by_user(user, params) }
+  describe '#update_by_user' do
+    let(:perform) { answer.update_by_user(params) }
 
     context 'when answer is correct and not outdated' do
-      let!(:answer) { create(:answer, user: user, result: 1, date: Date.today) }
+      let!(:answer) { create(:answer, result: 1, date: Date.today) }
 
       context 'and params are correct' do
-        let(:params) { {id: answer.id, answer: {result: 3}} }
+        let(:params) { {result: 3} }
 
         it "should change answer's result" do
           expect { perform }.to change { answer.reload.result }.from(1).to(3)
@@ -67,20 +66,8 @@ describe Answer do
         end
       end
 
-      context 'and prams has wrong id' do
-        let(:params) { {id: 0, answer: {result: 3}} }
-
-        it "should not change answer's result" do
-          expect { perform }.not_to change { answer.reload.result }
-        end
-
-        it 'should return false' do
-          expect(perform).to be false
-        end
-      end
-
-      context 'and prams has wrong result' do
-        let(:params) { {id: answer.id, answer: {result: 10}} }
+      context 'and params has wrong result' do
+        let(:params) { {result: 10} }
 
         it "should not change answer's result" do
           expect { perform }.not_to change { answer.reload.result }
@@ -93,8 +80,8 @@ describe Answer do
     end
 
     context 'when answer is correct but answer is outdated' do
-      let!(:answer) { create(:answer, user: user, result: 1, date: Date.yesterday) }
-      let(:params) { {id: answer.id, answer: {result: 3}} }
+      let!(:answer) { create(:answer, result: 1, date: Date.yesterday) }
+      let(:params) { {result: 3} }
 
       it "should not change answer's result" do
         expect { perform }.not_to change { answer.reload.result }

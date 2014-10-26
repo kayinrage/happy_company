@@ -14,17 +14,6 @@ class Answer < ActiveRecord::Base
   before_validation :generate_secret
   before_validation :set_result
 
-  def self.update_by_user(current_user, params)
-    answer = current_user.answers.find_by_id(params[:id])
-    if answer and !answer.outdated?
-      answer.update_attributes(params[:answer])
-      answer.answered = true
-      answer.save ? answer.result : false
-    else
-      false
-    end
-  end
-
   def self.result_dictionary
     {RESULT_VERY_HAPPY => "Yes, I'm very happy about this day :D",
      RESULT_HAPPY => 'Yes, this day was nice :)',
@@ -34,6 +23,16 @@ class Answer < ActiveRecord::Base
 
   def self.send_notifications
     #TODO settings - delivery_time
+  end
+
+  def update_by_user(answer_params)
+    unless outdated?
+      update_attributes(answer_params)
+      self.answered = true
+      save ? result : false
+    else
+      false
+    end
   end
 
   def outdated?
